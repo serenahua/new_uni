@@ -337,7 +337,7 @@ class ReportView(LoginRequiredMixin, TemplateView):
         return (year, month, day)
 
 
-class SystemManagementView(TemplateView):
+class SystemManagementView(LoginRequiredMixin, TemplateView):
     template_name = 'web/system.html'
 
     def get_context_data(self, **kwargs):
@@ -367,7 +367,7 @@ class SystemManagementView(TemplateView):
         return context
 
 
-class SystemDataView(TemplateView):
+class SystemDataView(LoginRequiredMixin, TemplateView):
     template_name = 'web/data.html'
 
     def get_context_data(self, **kwargs):
