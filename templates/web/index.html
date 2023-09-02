@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load static humanize mathfilters %}
+
+{% block content %}
+  {% comment %} <i class="fas fa-home page_icon"></i> {% endcomment %}
+  <div id="home_management">
+      <div class="item">
+          <div class="des">月盈餘總額</div>
+          <div class="value {% if total < 0 %}negative{% endif %}">{{ total|intcomma }}</div>
+      </div>
+      <div class="item">
+          <div class="des">馥香雞</div>
+          <div class="value {% if chicken < 0 %}negative{% endif %}">{{ chicken|intcomma }}</div>
+      </div>
+      <div class="item">
+          <div class="des">日料</div>
+          <div class="value {% if hotpot < 0 %}negative{% endif %}">{{ hotpot|abs|intcomma }}</div>
+      </div>
+      <div class="item">
+          <div class="des">家庭</div>
+          <div class="value {% if home < 0 %}negative{% endif %}">{{ home|abs|intcomma }}</div>
+      </div>
+      <div class="item">
+          <div class="des">雞隻</div>
+          <div class="value">{{ volume|intcomma }}</div>
+      </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+  {% comment %} <i class="fas fa-cog page_icon"></i> {% endcomment %}
+  <div id="system_management">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <div class="main">
+          <div class="tabs">
+              <a href="{% url 'web:system_management' %}?cat=1" class="item {% if cat == '1' %}active{% endif %}"><img src="{% static 'images/chicken.png' %}"></a>
+              <a href="{% url 'web:system_management' %}?cat=2" class="item {% if cat == '2' %}active{% endif %}"><img src="{% static 'images/hot_pot.png' %}"></a>
+              <a href="{% url 'web:system_management' %}?cat=3" class="item {% if cat == '3' %}active{% endif %}"><img src="{% static 'images/home_expense.png' %}"></a>
+              <a href="{% url 'web:system_management' %}?cat=4" class="item {% if cat == '4' %}active{% endif %}"><img src="{% static 'images/tool.png' %}"></a>
+          </div>
+          <div class="content">
+              <div id="title">
+                  {% if cat == '1' %}
+                  馥香雞支出項目
+                  {% elif cat == '2' %}
+                  日料支出項目
+                  {% elif cat == '3' %}
+                  家庭支出項目
+                  {% elif cat == '4' %}
+                  系統設定
+                  {% endif %}
+              </div>
+              {% if cat != '4' %}
+              <div class="list">
+                  {% for expense in items %}
+                  <div class="item">
+                      <div class="cell">{{ forloop.counter }}</div>
+                      <div class="cell">{{ expense.name }}</div>
+                      <div class="cell">
+                          <div class="cell_btn_group">
+                              <a href="{% url 'web:system_data' %}?n={{ expense.id }}&cat={{ cat }}" class="edit"><i class="fa-solid fa-pen"></i></a>
+                              <form method="post" action="{% url 'web:system_data' %}" class="delete">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="method" value="delete_item">
+                                  <input type="hidden" name="id" value="{{ expense.id }}">
+                                  <i class="fa-solid fa-trash-can delete_btn"></i>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              <div class="btn_group">
+                  <a href="{% url 'web:system_data' %}?cat={{ cat }}"><img src="{% static 'images/add.png' %}"></a>
+              </div>
+              {% else %}
+              <div class="list">
+                  {% for setting in items %}
+                      {% if setting.name == 'name' %}
+                      <a href="{% url 'web:system_data' %}?cat={{ cat }}&n={{ setting.id }}" class="setting_item">
+                          <div class="cell">系統名稱:</div>
+                          <div class="cell value">{{ setting.value }}</div>
+                      </a>
+                      {% elif setting.name == 'color' %}
+                      <div class="setting_item">
+                          <div class="cell">顏色選擇:</div>
+                          <form action="{% url 'web:system_data' %}" class="option">
+                              {% csrf_token %}
+                              <input type="hidden" name="method" value="edit_color">
+                              <input type="hidden" name="id" value="{{ setting.id }}">
+                              <input type="hidden" name="_color" value="">
+
+                              <fieldset>
+                                  <input type="radio" name="color" id="color1" value="1" class="input" {% if setting.value == '1' %}checked{% endif %}/>
+                                  <label for="color1" class="color_btn"><img src="{% static 'images/color 1.png' %}"></label>
+                              </fieldset>
+                              <fieldset>
+                                  <input type="radio" name="color" id="color2" value="2" class="input" {% if setting.value == '2' %}checked{% endif %}/>
+                                  <label for="color2" class="color_btn"><img src="{% static 'images/color 2.png' %}"></label>
+                              </fieldset>
+                              <fieldset>
+                                  <input type="radio" name="color" id="color3" value="3" class="input" {% if setting.value == '3' %}checked{% endif %}/>
+                                  <label for="color3" class="color_btn"><img src="{% static 'images/color 3.png' %}"></label>
+                              </fieldset>
+                              <fieldset>
+                                  <input type="radio" name="color" id="color4" value="4" class="input" {% if setting.value == '4' %}checked{% endif %}/>
+                                  <label for="color4" class="color_btn"><img src="{% static 'images/color 4.png' %}"></label>
+                              </fieldset>
+                              <fieldset>
+                                  <input type="radio" name="color" id="color5" value="5" class="input" {% if setting.value == '5' %}checked{% endif %}/>
+                                  <label for="color5" class="color_btn"><img src="{% static 'images/color 5.png' %}"></label>
+                              </fieldset>
+                          </form>
+                      </div>
+                      {% endif %}
+                  {% endfor %}
+              </div>
+              {% endif %}
+          </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

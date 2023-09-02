@@ -1,0 +1,83 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+  {% comment %} <i class="fas fa-kiwi-bird page_icon"></i> {% endcomment %}
+  <div id="chicken_management">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <form action="{% url 'web:chicken' %}" class="main">
+          {% csrf_token %}
+
+          {% if item is None %}
+          <input type="hidden" name="method" value="create">
+          {% else %}
+          <input type="hidden" name="method" value="edit">
+          <input type="hidden" name="id" value="{{ item.id }}">
+          <input type="hidden" name="type" value="{{ item.classname }}">
+          {% endif %}
+
+          <div class="title">
+              {% if item is None %}新增{% else %}編輯{% endif %}馥香雞帳款
+          </div>
+          <div class="content">
+              <div class="item">
+                  <div class="des">類別:</div>
+                  {% if item is None %}
+                  <fieldset>
+                      <input type="radio" name="type" id="income" value="income" class="input" {% if item is None or type == 'income' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="income">{% if item is None %}<i class='fa-solid fa-check'></i>{% endif %}收入</label>
+                  </fieldset>
+                  <fieldset>
+                      <input type="radio" name="type" id="expense" value="expense" class="input" {% if type == 'expense' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="expense">支出</label>
+                  </fieldset>
+                  {% else %}
+                  {% if item.classname == 'income' %}收入{% else %}支出{% endif %}
+                  {% endif %}
+              </div>
+              <div class="item">
+                  <label for="date" class="des">日期:</label>
+                  <input type="date" name="date" id="date" class="required" value="{% if item %}{{ item.date|date:'Y-m-d' }}{% else %}{{ today|date:'Y-m-d' }}{% endif %}">
+              </div>
+              <div class="item expense_item {% if item is None or type == 'income' %}hide{% endif %}">
+                  <label for="category" class="des">項目:</label>
+                  <select id="category" name="category">
+                      {% for category in categories %}
+                      <option value="{{ category.id }}" {% if item.item.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                      {% endfor %}
+                  </select>
+              </div>
+              <div class="item">
+                  <label for="value" class="des">金額:</label>
+                  <input type="number" name="value" id="value" class="required" value="{{ item.value }}">
+              </div>
+              <div class="item income_item {% if type == 'expense' %}hide{% endif %}">
+                  <label for="chicken" class="des">雞隻:</label>
+                  <input type="number" name="chicken" id="chicken" class="item_required required" value="{{ item.volume }}">
+              </div>
+              <div class="item">
+                  <label for="remark" class="des">備註:</label>
+                  <input type="text" name="remark" id="remark" value="{{ item.remark }}">
+              </div>
+          </div>
+          <div class="btn_group">
+              {% if item is not None %}
+                  <button class="cancel_btn btn" data-url="{% url 'web:report' %}?y={{ item.date|date:'Y' }}&m={{ item.date|date:'m' }}&d={{ item.date|date:'d' }}&t=d"><img src="{% static 'images/cancel.png' %}"></button>
+              {% else %}
+                  <button class="cancel_btn btn" data-url="{% url 'web:index' %}"><img src="{% static 'images/cancel.png' %}"></button>
+              {% endif %}
+              {% if item is None %}
+              <button class="continue_btn btn"><img src="{% static 'images/continue.png' %}"></button>
+              {% endif %}
+              <button class="submit_btn btn"><img src="{% static 'images/ok.png' %}"></button>
+          </div>
+      </form>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

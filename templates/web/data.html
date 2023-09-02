@@ -1,0 +1,81 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+  <i class="fas fa-cog page_icon"></i>
+  <div id="system_management" class="form_style">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <form action="{% url 'web:system_data' %}" class="main">
+          {% csrf_token %}
+
+          {% if cat == '4' %}
+          <input type="hidden" name="method" value="edit_setting">
+          <input type="hidden" name="id" value="{{ item.id }}">
+          {% elif item is None %}
+          <input type="hidden" name="method" value="create_item">
+          {% else %}
+          <input type="hidden" name="method" value="edit_item">
+          <input type="hidden" name="id" value="{{ item.id }}">
+          {% endif %}
+
+          <div class="content">
+              <div id="title">
+                  {% if cat != '4' %}
+                      {% if item is None %}新增{% else %}編輯{% endif %}支出項目
+                  {% else %}
+                      編輯系統名稱
+                  {% endif %}
+              </div>
+
+              <div class="form_items">
+                  {% if cat == '4' %}
+                  <div class="item single_question">
+                      <label for="name" class="des">名稱:</label>
+                      <input type="text" name="name" id="name" value="{{ item.value }}" class="required">
+                  </div>
+                  {% else %}
+                  <div class="item">
+                      <div class="des">類別:</div>
+                      {% if item is None or item.chicken %}
+                      <fieldset>
+                          <input type="radio" name="type" id="type_chicken" value="chicken" class="input" {% if cat == '1' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                          <label for="type_chicken">{% if item is None and cat == '1' %}<i class='fa-solid fa-check'></i>{% endif %}馥香雞</label>
+                      </fieldset>
+                      {% endif %}
+                      {% if item is None or item.hot_pot %}
+                      <fieldset>
+                          <input type="radio" name="type" id="type_hotpot" value="hotpot" class="input" {% if item.hot_pot or cat == '2' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                          <label for="type_hotpot">{% if item is None and cat == '2' %}<i class='fa-solid fa-check'></i>{% endif %}日料</label>
+                      </fieldset>
+                      {% endif %}
+                      {% if item is None or item.home %}
+                      <fieldset>
+                          <input type="radio" name="type" id="type_home" value="home" class="input" {% if item.home or cat == '3' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                          <label for="type_home">{% if item is None and cat == '3' %}<i class='fa-solid fa-check'></i>{% endif %}家庭</label>
+                      </fieldset>
+                      {% endif %}
+                  </div>
+                  <div class="item">
+                      <label for="name" class="des">名稱:</label>
+                      <input type="text" name="name" id="name" value="{{ item.name }}" class="required">
+                  </div>
+                  {% endif %}
+              </div>
+          </div>
+          <div class="btn_group">
+              <a class="cancel_btn btn" href="{% url 'web:system_management' %}?cat={{ cat }}"><img src="{% static 'images/cancel.png' %}"></a>
+              {% if item is None and cat != '4' %}
+              <button class="continue_btn btn"><img src="{% static 'images/continue.png' %}"></button>
+              {% endif %}
+              <button class="submit_btn btn"><img src="{% static 'images/ok.png' %}"></button>
+          </div>
+      </form>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

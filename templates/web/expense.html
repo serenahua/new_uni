@@ -1,0 +1,70 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+  {% comment %} <i class="fas fa-money-bill-alt page_icon"></i> {% endcomment %}
+  <div id="expense_management">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <form action="{% url 'web:expense' %}" class="main">
+          {% csrf_token %}
+
+          {% if item is None %}
+          <input type="hidden" name="method" value="create">
+          {% else %}
+          <input type="hidden" name="method" value="edit">
+          <input type="hidden" name="id" value="{{ item.id }}">
+          {% endif %}
+
+          <div class="title">
+              {% if item is None %}新增{% else %}編輯{% endif %}家庭帳款
+          </div>
+          <div class="content">
+              <div class="item">
+                  <div class="des">類別:</div>
+                  <fieldset>
+                      <input type="radio" name="type" id="expense" value="expense" class="input" checked />
+                      <label for="expense">支出</label>
+                  </fieldset>
+              </div>
+              <div class="item">
+                  <label for="date" class="des">日期:</label>
+                  <input type="date" name="date" id="date" class="required" value="{% if item %}{{ item.date|date:'Y-m-d' }}{% else %}{{ today|date:'Y-m-d' }}{% endif %}">
+              </div>
+              <div class="item">
+                  <label for="category" class="des">項目:</label>
+                  <select id="category" name="category">
+                      {% for category in categories %}
+                      <option value="{{ category.id }}" {% if item.item.id == category.id %}selected{% endif %}>{{ category.name }}</option>
+                      {% endfor %}
+                  </select>
+              </div>
+              <div class="item">
+                  <label for="value" class="des">金額:</label>
+                  <input type="number" name="value" id="value" class="required" value="{{ item.value }}">
+              </div>
+              <div class="item">
+                  <label for="remark" class="des">備註:</label>
+                  <input type="text" name="remark" id="remark" value="{{ item.remark }}">
+              </div>
+          </div>
+          <div class="btn_group">
+              {% if item is not None %}
+                  <button class="cancel_btn btn" data-url="{% url 'web:report' %}?y={{ item.date|date:'Y' }}&m={{ item.date|date:'m' }}&d={{ item.date|date:'d' }}&t=d"><img src="{% static 'images/cancel.png' %}"></button>
+              {% else %}
+                  <button class="cancel_btn btn" data-url="{% url 'web:index' %}"><img src="{% static 'images/cancel.png' %}"></button>
+              {% endif %}
+              {% if item is None %}
+              <button class="continue_btn btn"><img src="{% static 'images/continue.png' %}"></button>
+              {% endif %}
+              <button class="submit_btn btn"><img src="{% static 'images/ok.png' %}"></button>
+          </div>
+      </form>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

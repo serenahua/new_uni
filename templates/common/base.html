@@ -1,0 +1,71 @@
+{% load static i18n %}
+
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8">
+    <title>記帳系統</title>
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{% static 'images/accounting.png' %}" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta itemprop="name" content="">
+    <meta itemprop="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="DC.Publisher" content="" />
+    <meta name="DC.Description" content="" />
+    <meta name="DC.Type" content="Website" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free-6.4.0/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'less/account.css' %}">
+
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+    <div id="wrapper" class="color{{ color }}">
+        {% block nav %}
+            <div id="nav">
+                <div class="block">
+                    <a href="{% url 'web:index' %}" class="item {% if page == "home" %}active{% endif %}"><i class="fas fa-home icon"></i>首頁</a>
+                    <a href="{% url 'web:chicken' %}" class="item {% if page == "chicken" %}active{% endif %}"><i class="fas fa-kiwi-bird icon"></i>馥香雞</a>
+                    <a href="{% url 'web:hotpot' %}" class="item {% if page == "hotpot" %}active{% endif %}"><i class="fas fa-utensils icon"></i>日料</a>
+                    <a href="{% url 'web:expense' %}" class="item {% if page == "home_expense" %}active{% endif %}"><i class="fas fa-money-bill-alt icon"></i>家庭支出</a>
+                    <a href="{% url 'web:report' %}" class="item {% if page == "report" %}active{% endif %}"><i class="fas fa-scroll icon"></i>報表</a>
+                    <a href="{% url 'web:system_management' %}" class="item {% if page == "setting" %}active{% endif %}"><i class="fas fa-cog icon"></i>設定</a>
+                </div>
+                <div class="block">
+                    <a href="{% url 'account_logout' %}" class="item"><i class="fa-solid fa-user icon" class="item"></i>登出</a>
+                </div>
+            </div>
+        {% endblock  %}
+        {% block content %}
+        {% endblock %}
+        <div id="msg_window">
+            <div id="msg_box">
+                <div class="title">確定要這樣嗎？</div>
+                <div class="content">那就沒機會重來唷！</div>
+                <div class="btn_group">
+                    <div class="btn_ok btn">好的</div>
+                    <div class="btn_no btn">取消</div>
+                    <div class="btn_yes btn">確認</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="{% static 'vendor/fontawesome-free-6.4.0/js/all.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-3.5.1.min.js' %}"></script>
+
+{% block js %}
+{% endblock %}
+
+</html>

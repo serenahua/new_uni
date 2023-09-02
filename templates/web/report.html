@@ -1,0 +1,116 @@
+{% extends 'common/base.html' %}
+{% load static humanize mathfilters %}
+
+{% block content %}
+  {% comment %} <i class="fas fa-scroll page_icon"></i> {% endcomment %}
+  <div id="report_management">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <div class="main">
+          {% if type == 'd' %}
+          <div class="tabs">
+              <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&t=m" class="item "><img src="{% static 'images/go_back.png' %}"></a>
+          </div>
+          {% endif %}
+          <div class="title">
+              {% if type == 'm' %}
+                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&t=m&a=-30" class="prev"><i class="fa-solid fa-chevron-left"></i></a>
+              {% elif type == 'd' %}
+                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&d={{ day }}&&t=d&a=-1" class="prev"><i class="fa-solid fa-chevron-left"></i></a>
+              {% endif %}
+              <div class="current">
+                {% if type == 'm' %}{{ year }}-{{ month|stringformat:'02d' }}
+                {% else %}{{ year }}-{{ month|stringformat:'02d' }}-{{ day|stringformat:'02d' }}
+                {% endif %}
+              </div>
+              {% if type == 'm' %}
+                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&t=m&a=30" class="next"><i class="fa-solid fa-chevron-right"></i></a>
+              {% elif type == 'd' %}
+                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&d={{ day }}&t=d&a=1" class="next"><i class="fa-solid fa-chevron-right"></i></a>
+              {% endif %}
+          </div>
+          <div class="summary">
+              <div class="item">
+                  <div class="name">{% if type == 'm' %}本月收支{% else %}本日收支{% endif %}</div>
+                  <div class="num {% if total < 0 %}negative{% endif %}">{{ total|abs|intcomma }}</div>
+              </div>
+              <div class="item">
+                  <div class="name">收入</div>
+                  <div class="num">{{ income|intcomma }}</div>
+              </div>
+              <div class="item">
+                  <div class="name">支出</div>
+                  <div class="num {% if expense > 0 %}negative{% endif %}">{{ expense|intcomma }}</div>
+              </div>
+              <div class="item">
+                  <div class="name">{% if type == 'm' %}月雞隻數{% else %}日雞隻數{% endif %}</div>
+                  <div class="num">{{ volume|intcomma }}</div>
+              </div>
+          </div>
+          <div class="content">
+              <div class="list">
+                  {% if type == 'm' %}
+                      {% for item in daily_items %}
+                      <a href="{% url 'web:report' %}?y={{ item.d|date:'Y' }}&m={{ item.d|date:'m' }}&d={{ item.d|date:'d' }}&t=d" class="item">
+                          <div class="date">{{ item.d|date:'m-d' }}</div>
+                          <div class="volume"><img src="{% static 'images/turkey.png' %}"><span>{{ item.chicken|default:'0'|intcomma }}</span></div>
+                          <div class="money"><img src="{% static 'images/money.png' %}"><span class="{% if item.total < 0 %}negative{% endif %}">{{ item.total|abs|intcomma }}</span></div>
+                      </a>
+                      {% endfor %}
+                  {% elif type == 'd' %}
+                      {% for item in items %}
+                      <div class="item">
+                          <div class="name">
+                              {% if item.classname == 'income' %}
+                                  {% if item.chicken %}馥香雞{% elif item.hot_pot %}日料{% else %}家庭{% endif %}收入
+                              {% elif item.classname == 'expense' %}
+                                  {% if item.item.chicken %}馥香雞{% elif item.item.hot_pot %}日料{% else %}家庭{% endif %}支出
+                              {% endif %}
+                          </div>
+                          <div class="category">
+                              {% if item.classname == 'expense' %}{{ item.item.name }}{% endif %}
+                          </div>
+                          <div class="volume">
+                              {% if item.classname == 'income' and item.chicken %}
+                              <img src="{% static 'images/turkey.png' %}">
+                              <span>{{ item.volume|default:'0'|intcomma }}</span>
+                              {% endif %}
+                          </div>
+                          <div class="money">
+                              <img src="{% static 'images/money.png' %}">
+                              <span class="{% if item.classname == 'expense' %}negative{% endif %}">{{ item.value|intcomma }}</span>
+                          </div>
+                          <div class="button">
+                              {% if item.classname == 'income' and item.chicken %}
+                                  <a href="{% url 'web:chicken' %}?n={{ item.id }}&t=income" class="edit"><i class="fa-solid fa-pen"></i></a>
+                              {% elif item.classname == 'income' and item.hot_pot %}
+                                  <a href="{% url 'web:hotpot' %}?n={{ item.id }}&t=income" class="edit"><i class="fa-solid fa-pen"></i></a>
+                              {% elif item.classname == 'expense' and item.item.chicken %}
+                                  <a href="{% url 'web:chicken' %}?n={{ item.id }}&t=expense" class="edit"><i class="fa-solid fa-pen"></i></a>
+                              {% elif item.classname == 'expense' and item.item.hot_pot %}
+                                  <a href="{% url 'web:hotpot' %}?n={{ item.id }}&t=expense" class="edit"><i class="fa-solid fa-pen"></i></a>
+                              {% elif item.classname == 'expense' and item.item.home %}
+                                  <a href="{% url 'web:expense' %}?n={{ item.id }}" class="edit"><i class="fa-solid fa-pen"></i></a>
+                              {% endif %}
+                              <form method="post" action="{% url 'web:report' %}" class="delete">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="method" value="delete_item">
+                                  <input type="hidden" name="type" value="{{ item.classname }}">
+                                  <input type="hidden" name="id" value="{{ item.id }}">
+                                  <i class="fa-solid fa-trash-can delete_btn"></i>
+                              </form>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

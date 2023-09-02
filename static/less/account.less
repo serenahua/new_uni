@@ -1,0 +1,2092 @@
+@import './mixins/_allMixins.less';
+@import './_default-themes.less';
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    position: relative;
+
+    #wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        .page_icon {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            font-size: 30vw;
+            color: rgba(@white, .2);
+            z-index: 0;
+        }
+
+        #login_page {
+            .flexbox(column, center, center);
+            width: 80%;
+            margin: auto;
+            margin-top: 111px;
+            gap: 24px;
+
+            .app_name {
+                width: 100%;
+                text-align: center;
+                font-size: 72px;
+                font-weight: bold;
+            }
+
+            .main {
+                .flexbox(column, center, center);
+                width: 75%;
+                border-radius: 20px;
+                box-sizing: border-box;
+                padding: 50px 40px;
+                gap: 65px;
+
+                .content {
+                    .flexbox(column, center, center);
+                    width: 100%;
+                    gap: 16px;
+
+                    .item {
+                        .flexbox(row, center, center);
+                        padding: 20px;
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        gap: 20px;
+                        width: 100%;
+
+                        .icon {
+                            font-size: 34px;
+                        }
+
+                        input {
+                            width: 100%;
+                            font-size: 28px;
+                            background: unset;
+                            font-weight: bold;
+                            border: 0;
+                            outline: none;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .btn_group {
+                    width: 100%;
+
+                    .btn_ok {
+                        .flexbox(row, center, center);
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        font-size: 26px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        #nav {
+            .flexbox(row, center, center);
+            width: max-content;
+            margin: 64px auto 0;
+            gap: 30px;
+
+            .block {
+                .flexbox(row, center, center);
+                padding: 20px 40px;
+                border-radius: 20px;
+                gap: 40px;
+
+                .item {
+                    .flexbox(row, center, center);
+                    gap: 4px;
+                    font-size:24px;
+                    text-decoration: none;
+                    outline: none;
+                    padding: 8px 20px;
+
+                    &:hover {
+                        opacity: .8;
+                    }
+
+                    .icon {
+                        font-size: 32px;
+                    }
+                }
+
+                .active {
+                    font-weight: bold;
+                    border-radius: 50px;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                &:nth-child(2) {
+                    padding: 20px 10px;
+
+                    &:hover {
+                        opacity: .8;
+                    }
+                }
+            }
+        }
+
+        #msg_window {
+            .flexbox(row, center, center);
+            .ease(.2s);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            display: none;
+
+            #msg_box {
+                .flexbox(column, center, center);
+                padding: 32px 54px;
+                gap: 10px;
+                width: max-content;
+                border-radius: 10px;
+                box-sizing: border-box;
+
+                .title {
+                    width: 450px;
+                    min-height: 44px;
+                    color: @fontColorDark;
+                    font-size: 26px;
+                    font-weight: bold;
+                }
+
+                .content {
+                    width: 450px;
+                    min-height: 100px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .btn_group {
+                    .flex;
+                    gap: 10px;
+                    height: 50px;
+                    width: 100%;
+
+                    .btn {
+                        display: none;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        font-size: 20px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            &.show {
+                display: flex;
+            }
+
+            &.remind {
+                #msg_box {
+                    .btn_group {
+                        .btn_ok {
+                            .flexbox(row, center, center);
+                            flex: 1;
+                        }
+                    }
+                }
+            }
+
+            &.confirm {
+                #msg_box {
+                    .btn_group {
+                        .btn_yes,
+                        .btn_no {
+                            .flexbox(row, center, center) !important;
+                            flex: 1;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        #home_management {
+            .flexbox(row, flex-start, flex-start);
+            flex-wrap: wrap;
+            width: 80%;
+            margin: auto;
+            margin-top: 87px;
+            gap: 12px;
+
+            .item {
+                .flexbox(column, flex-start, flex-start);
+                width: calc((100% - 36px) / 4);
+                height: 200px;
+                padding: 31px 0 0 34px;
+                border-radius: 20px;
+                box-sizing: border-box;
+
+                .des {
+                    font-size: 36px;
+                }
+
+                .value {
+                    font-size: 48px;
+                    font-weight: bold;
+                    margin-top: 20px;
+                }
+
+                &:first-child {
+                    width: 100%;
+
+                    .value {
+                        margin-top: 0;
+                        font-size: 84px;
+                    }
+                }
+            }
+        }
+
+        #chicken_management {
+            position: relative;
+            width: 80%;
+            height: 525px;
+            margin: 53px auto 0;
+            box-sizing: border-box;
+
+            #bg {
+                .flexbox(row, center, center);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+
+                .left,
+                .right {
+                    width: 50%;
+                    height: 100%;
+                    border-radius: 20px;
+                }
+            }
+
+            .main {
+                position: absolute;
+                left: 90px;
+                width: calc(100% - 180px);
+                height: 100%;
+                margin: auto;
+                z-index: 2;
+
+                .title {
+                    padding: 0 30px;
+                    width: calc(100% - 64px);
+                    font-size: 36px;
+                    font-weight: bold;
+                    text-align: center;
+                    border-radius: 10px;
+                    box-sizing: border-box;
+                    margin: 20px auto 0;
+
+                    .prev,
+                    .next {
+                        cursor: pointer;
+                    }
+                }
+
+                .content {
+                    .flexbox(column, flex-start, center);
+                    width: calc(100% - 174px);
+                    margin: auto;
+
+                    .item {
+                        .flexbox(row, center, flex-start);
+                        width: 100%;
+                        padding: 20px 10px;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        gap: 47px;
+                        font-size: 36px;
+                        font-weight: bold;
+
+                        input,
+                        select {
+                            flex: 1;
+                            background: unset;
+                            font-size: 36px;
+                            font-weight: bold;
+                            border: 0;
+                            outline: none;
+                            cursor: pointer;
+
+                            &:focus {
+                                cursor: default;
+                            }
+                        }
+
+                        fieldset {
+                            flex: 1;
+                            margin: 0 5px;
+                            padding: 0;
+                            border: 0;
+
+                            label {
+                                .flexbox(row, center, flex-start);
+                                gap: 9px;
+                                position: relative;
+                                cursor: pointer;
+                                font-size: 36px;
+                            }
+
+                            .input {
+                                display: none;
+
+                                &:checked + label {
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+
+                    .hide {
+                        display:  none;
+                    }
+                }
+
+                .btn_group {
+                    position: absolute;
+                    .flexbox(column, center, center);
+                    gap: 20px;
+                    right: -74px;
+                    bottom: 26px;
+
+                    .btn {
+                        width: 60px;
+                        padding: 0;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+
+                    a {
+                      &:hover {
+                          opacity: 0.8;
+                      }
+                    }
+                }
+            }
+        }
+
+        #hotpot_management {
+            #chicken_management;
+        }
+
+        #expense_management {
+            #chicken_management;
+        }
+
+        #report_management {
+            #chicken_management;
+            height: 574px;
+            margin: 20px auto 0;
+
+            .main {
+                .tabs {
+                    position: absolute;
+                    .flexbox(column, center, center);
+                    gap: 20px;
+                    left: -74px;
+                    top: 26px;
+
+                    .item {
+                        img {
+                            width: 60px;
+                        }
+
+                        &:hover {
+                            opacity: 0.9 !important;
+                        }
+                    }
+
+                    .active {
+                        img {
+                            opacity:1 !important;
+                            filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
+                        }
+
+                        &:hover {
+                            opacity:1 !important;
+                        }
+                    }
+                }
+
+                .title {
+                    .flexbox(row, center, space-between);
+                }
+
+                .summary {
+                    .flexbox(row, center, space-between);
+                    width: calc(100% - 64px);
+                    height: 91px;
+                    margin: 5px auto 0;
+                    padding: 10px 75px;
+                    border-radius: 10px;
+                    box-sizing: border-box;
+
+                    .item {
+                        .flexbox(column, flex-start, flex-start);
+                        gap: 2px;
+
+                        .name {
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+
+                        .num {
+                            font-size: 32px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                .content {
+                    width: calc(100% - 64px);
+                    margin: 20px auto 0;
+
+                    #title {
+                        .flexbox(row, center, center);
+                        width: 100%;
+                        font-size: 36px;
+                        font-weight: bold;
+                        border-radius: 10px;
+                    }
+
+                    .list {
+                        .flexbox(column, flex-start, flex-start);
+                        height: 370px;
+                        width: 100%;
+                        gap: 5px;
+                        overflow: hidden;
+                        overflow-y: auto;
+
+                        .item {
+                            .flexbox(row, center, space-between);
+                            min-height: 55px;
+                            padding: 0 20px;
+                            font-size: 20px;
+                            gap: 0;
+                            box-sizing: border-box;
+                            text-decoration: none;
+
+                            .cell {
+                                .cell_btn_group {
+                                    .flex;
+                                    font-size: 26px;
+                                    gap: 20px;
+
+                                    .delete {
+                                        cursor: pointer;
+                                    }
+
+                                }
+                            }
+
+                            .volume {
+                                .flexbox(row, center, center);
+                                min-width: 70px;
+                                gap: 5px;
+
+                                span {
+                                    width: 35px;
+                                    text-align: right;
+                                }
+                            }
+
+                            .money {
+                                .flexbox(row, center, center);
+                                gap: 5px;
+
+                                span {
+                                    min-width: 60px;
+                                    text-align: right;
+                                }
+                            }
+
+                            .name {
+                                width: 100px;
+                            }
+
+                            .category {
+                                width: 350px;
+                            }
+
+                            .button {
+                                .flex;
+                                font-size: 26px;
+                                gap: 20px;
+
+                                .delete {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+
+                    .form_items {
+                        padding: 0 40px;
+                        box-sizing: border-box;
+                        margin-top: 57px;
+                        height: 200px;
+                        width: 100%;
+                    }
+                }
+            }
+
+            &.form_style {
+                height: 525px;
+                margin: 53px auto 0;
+            }
+        }
+
+        #system_management {
+            #report_management;
+
+            .main {
+                .tabs {
+                    .item {
+                        img {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+
+                .content {
+                    margin: 25px auto 0;
+
+                    .list {
+                        margin-top: 32px;
+                        height: 435px;
+
+                        .item {
+                            gap: 20px;
+
+                            .cell {
+                                &:nth-child(1) {
+                                    width: 62px;
+                                    text-align: center;
+                                }
+
+                                &:nth-child(2) {
+                                    flex: 1;
+                                }
+                            }
+                        }
+
+                        .setting_item {
+                            .flexbox(row, center, flex-start);
+                            text-decoration: none;
+                            height: 55px;
+                            width: 100%;
+                            border-radius: 10px;
+                            padding: 0 20px;
+                            box-sizing: border-box;
+                            font-size: 20px;
+                            font-weight: bold;
+                            gap: 40px;
+
+                            .value {
+                                font-size: 24px;
+                            }
+
+                            .option {
+                                .flexbox(row, center, center);
+                                gap: 20px;
+
+                                fieldset {
+                                    flex: 1;
+                                    padding: 0;
+                                    border: 0;
+
+                                    label {
+                                        .flex;
+
+                                        img {
+                                            width: 45px;
+                                            opacity: 0.7;
+                                            cursor: pointer;
+                                        }
+                                    }
+
+                                    .input {
+                                        display: none;
+
+                                        &:checked + label img{
+                                            opacity: 1;
+                                            filter: drop-shadow(0 0 8px rgba(0,0,0,.25));
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    // COLOR DEFINITION
+    .color1 {
+        color: @fontColor;
+        background: rgb(@mainGreen, .75);
+
+        #login_page {
+            .app_name {
+                color: rgb(@white);
+            }
+
+            .main {
+                background: rgba(@white, .95);
+                border: 1px solid rgb(@mainGreen);
+
+                .content {
+                    .item {
+                        border: 1px solid rgb(@mainGreen);
+
+                        .icon {
+                            color: rgb(@mainGreen);
+                        }
+
+                        input {
+                            color: @fontColor;
+                        }
+
+                        &.focus {
+                            border: 1px solid rgb(@mainYellow1);
+
+                            .icon {
+                                color: rgb(@mainYellow1);
+                            }
+                        }
+                    }
+                }
+
+                .btn_group {
+                    .btn_ok {
+                        background: rgba(@mainGreen, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainGreen);
+                        }
+                    }
+                }
+            }
+        }
+
+        #nav {
+            .block {
+                background: rgba(255, 255, 255, .8);
+
+                .item {
+                    color: @fontColor;
+
+                    .icon {
+                        color: rgba(@mainGreen, .8);
+                    }
+                }
+
+                .active {
+                    background: rgba(@mainYellow1, .9);
+
+                    .icon {
+                        color: rgb(@mainGreen);
+                    }
+                }
+            }
+        }
+
+        #msg_window {
+            background: rgba(@black, .2);
+
+            #msg_box {
+                background: rgb(@white);
+                border: 1px solid rgb(@mainGreen);
+
+                .title {
+                    color: @fontColorDark;
+                }
+
+                .btn_group {
+                    .btn {
+                        background: rgba(@mainGreen, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainGreen);
+                        }
+                    }
+
+                    .btn_no {
+                        border: 1px solid rgb(@mainGreen);
+                        background: none;
+                        color: rgb(@mainGreen);
+
+                        &:hover {
+                            background: none;
+                            border: 1px solid rgb(@mainYellow1);
+                            color: rgb(@mainYellow1);
+                        }
+                    }
+                }
+            }
+        }
+
+        #home_management {
+            .item {
+                background: rgba(@white, .95);
+
+                .des {
+                    color: rgb(@mainGreen);
+                }
+
+                .negative {
+                    color: @red;
+                }
+            }
+        }
+
+        #chicken_management {
+            #bg {
+                .left {
+                    background: @color1_l;
+                }
+
+                .right {
+                    background: @color1_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .title {
+                    color: rgba(@white, .9);
+                    background: rgba(@mainGreen, .75);
+                }
+
+                .content {
+                    .item {
+                        &:nth-child(even of :not(.hide)) {
+                            background: rgba(@mainYellow1, .5);
+                        }
+
+                        .des {
+                            color: rgb(@mainGreen);
+                        }
+
+                        input,
+                        select {
+                            color: @fontColor;
+                        }
+
+                        fieldset {
+                            label {
+                                color: rgba(@mainGreen, .3);
+                            }
+
+                            .input {
+                                &:checked + label {
+                                    color: @fontColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #hotpot_management {
+            #chicken_management;
+        }
+
+        #expense_management {
+            #chicken_management;
+        }
+
+        #report_management {
+            #chicken_management;
+
+            .main {
+                .title {
+                    a {
+                        color: rgb(@white);
+                    }
+                }
+
+                .summary {
+                    border: 1px solid rgb(@mainGreen);
+
+                    .item {
+                        .name {
+                            color: rgba(@mainGreen, .75);
+                        }
+
+                        .negative {
+                            color: @red;
+                        }
+                    }
+                }
+
+                .content {
+                    #title {
+                        color: rgba(@white, .9);
+                        background: rgba(@mainGreen, .75);
+                    }
+
+                    .list {
+                        .item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainGreen, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow1, .5);
+                            }
+
+                            .cell {
+                                .cell_btn_group {
+                                    .edit {
+                                        color: @navyGreen;
+                                    }
+
+                                    .delete {
+                                        color: rgb(@red);
+                                    }
+
+                                }
+                            }
+
+                            .money {
+                                .negative {
+                                    color: @red;
+                                }
+                            }
+
+                            .button {
+                                .edit {
+                                    color: @navyGreen;
+                                }
+
+                                .delete {
+                                    color: rgb(@red);
+                                }
+                            }
+                        }
+                    }
+
+                    .form_items {
+                        .single_question {
+                            background: rgba(@mainYellow1, .5);
+                        }
+                    }
+                }
+            }
+        }
+
+        #system_management {
+            #report_management;
+
+            .main {
+                .content {
+                    .list {
+                        .setting_item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainGreen, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow1, .5);
+                            }
+
+                            .value {
+                                color: rgba(0,0,0,.6);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .color2 {
+        color: @fontColor;
+        background: rgb(@mainPurple, .75);
+
+        #login_page {
+            .app_name {
+                color: rgb(@white);
+            }
+
+            .main {
+                background: rgba(@white, .95);
+                border: 1px solid rgb(@mainPurple);
+
+                .content {
+                    .item {
+                        border: 1px solid rgb(@mainPurple);
+
+                        .icon {
+                            color: rgb(@mainPurple);
+                        }
+
+                        input {
+                            color: @fontColor;
+                        }
+
+                        &.focus {
+                            border: 1px solid rgb(@mainYellow1);
+
+                            .icon {
+                                color: rgb(@mainYellow1);
+                            }
+                        }
+                    }
+                }
+
+                .btn_group {
+                    .btn_ok {
+                        background: rgba(@mainPurple, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainPurple);
+                        }
+                    }
+                }
+            }
+        }
+
+        #nav {
+            .block {
+                background: rgba(255, 255, 255, .8);
+
+                .item {
+                    color: @fontColor;
+
+                    .icon {
+                        color: rgba(@mainPurple, .8);
+                    }
+                }
+
+                .active {
+                    background: rgba(@mainYellow2, .9);
+
+                    .icon {
+                        color: rgb(@mainPurple);
+                    }
+                }
+            }
+        }
+
+        #msg_window {
+            background: rgba(@black, .2);
+
+            #msg_box {
+                background: rgb(@white);
+                border: 1px solid rgb(@mainPurple);
+
+                .title {
+                    color: @fontColorDark;
+                }
+
+                .btn_group {
+                    .btn {
+                        background: rgba(@mainPurple, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainPurple);
+                        }
+                    }
+
+                    .btn_no {
+                        border: 1px solid rgb(@mainPurple);
+                        background: none;
+                        color: rgb(@mainPurple);
+
+                        &:hover {
+                            background: none;
+                            border: 1px solid rgb(@mainYellow2);
+                            color: rgb(@mainYellow2);
+                        }
+                    }
+                }
+            }
+        }
+
+        #home_management {
+            .item {
+                background: rgba(@white, .95);
+
+                .des {
+                    color: rgb(@mainPurple);
+                }
+
+                .negative {
+                    color: @red;
+                }
+            }
+        }
+
+        #chicken_management {
+            #bg {
+                .left {
+                    background: @color2_l;
+                }
+
+                .right {
+                    background: @color2_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .title {
+                    color: rgba(@white, .9);
+                    background: rgba(@mainPurple, .75);
+                }
+
+                .content {
+                    .item {
+                        &:nth-child(even of :not(.hide)) {
+                            background: rgba(@mainYellow2, .5);
+                        }
+
+                        .des {
+                            color: rgb(@mainPurple);
+                        }
+
+                        input,
+                        select {
+                            color: @fontColor;
+                        }
+
+                        fieldset {
+                            label {
+                                color: rgba(@mainPurple, .3);
+                            }
+
+                            .input {
+                                &:checked + label {
+                                    color: @fontColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #hotpot_management {
+            #chicken_management;
+        }
+
+        #expense_management {
+            #chicken_management;
+        }
+
+        #report_management {
+            #chicken_management;
+
+            .main {
+                .title {
+                    a {
+                        color: rgb(@white);
+                    }
+                }
+
+                .summary {
+                    border: 1px solid rgb(@mainPurple);
+
+                    .item {
+                        .name {
+                            color: rgba(@mainPurple, .75);
+                        }
+
+                        .negative {
+                            color: @red;
+                        }
+                    }
+                }
+
+                .content {
+                    #title {
+                        color: rgba(@white, .9);
+                        background: rgba(@mainPurple, .75);
+                    }
+
+                    .list {
+                        .item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainPurple, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow2, .5);
+                            }
+
+                            .cell {
+                                .cell_btn_group {
+                                    .edit {
+                                        color: @navyGreen;
+                                    }
+
+                                    .delete {
+                                        color: rgb(@red);
+                                    }
+
+                                }
+                            }
+
+                            .money {
+                                .negative {
+                                    color: @red;
+                                }
+                            }
+
+                            .button {
+                                .edit {
+                                    color: @navyGreen;
+                                }
+
+                                .delete {
+                                    color: rgb(@red);
+                                }
+                            }
+                        }
+                    }
+
+                    .form_items {
+                        .single_question {
+                            background: rgba(@mainYellow2, .5);
+                        }
+                    }
+                }
+            }
+        }
+
+        #system_management {
+            #report_management;
+
+            .main {
+                .content {
+                    .list {
+                        .setting_item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainPurple, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow2, .5);
+                            }
+
+                            .value {
+                                color: rgba(0,0,0,.6);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .color3 {
+        color: @fontColor;
+        background: rgb(@mainBrown, .75);
+
+        #login_page {
+            .app_name {
+                color: rgb(@white);
+            }
+
+            .main {
+                background: rgba(@white, .95);
+                border: 1px solid rgb(@mainBrown);
+
+                .content {
+                    .item {
+                        border: 1px solid rgb(@mainBrown);
+
+                        .icon {
+                            color: rgb(@mainBrown);
+                        }
+
+                        input {
+                            color: @fontColor;
+                        }
+
+                        &.focus {
+                            border: 1px solid rgb(@mainYellow3);
+
+                            .icon {
+                                color: rgb(@mainYellow3);
+                            }
+                        }
+                    }
+                }
+
+                .btn_group {
+                    .btn_ok {
+                        background: rgba(@mainBrown, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainBrown);
+                        }
+                    }
+                }
+            }
+        }
+
+        #nav {
+            .block {
+                background: rgba(255, 255, 255, .8);
+
+                .item {
+                    color: @fontColor;
+
+                    .icon {
+                        color: rgba(@mainBrown, .8);
+                    }
+                }
+
+                .active {
+                    background: rgba(@mainYellow3, .9);
+
+                    .icon {
+                        color: rgb(@mainBrown);
+                    }
+                }
+            }
+        }
+
+        #msg_window {
+            background: rgba(@black, .2);
+
+            #msg_box {
+                background: rgb(@white);
+                border: 1px solid rgb(@mainBrown);
+
+                .title {
+                    color: @fontColorDark;
+                }
+
+                .btn_group {
+                    .btn {
+                        background: rgba(@mainBrown, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainBrown);
+                        }
+                    }
+
+                    .btn_no {
+                        border: 1px solid rgb(@mainBrown);
+                        background: none;
+                        color: rgb(@mainBrown);
+
+                        &:hover {
+                            background: none;
+                            border: 1px solid rgb(@mainYellow3);
+                            color: rgb(@mainYellow3);
+                        }
+                    }
+                }
+            }
+        }
+
+        #home_management {
+            .item {
+                background: rgba(@white, .95);
+
+                .des {
+                    color: rgb(@mainBrown);
+                }
+
+                .negative {
+                    color: @red;
+                }
+            }
+        }
+
+        #chicken_management {
+            #bg {
+                .left {
+                    background: @color3_l;
+                }
+
+                .right {
+                    background: @color3_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .title {
+                    color: rgba(@white, .9);
+                    background: rgba(@mainBrown, .75);
+                }
+
+                .content {
+                    .item {
+                        &:nth-child(even of :not(.hide)) {
+                            background: rgba(@mainYellow3, .5);
+                        }
+
+                        .des {
+                            color: rgb(@mainBrown);
+                        }
+
+                        input,
+                        select {
+                            color: @fontColor;
+                        }
+
+                        fieldset {
+                            label {
+                                color: rgba(@mainBrown, .3);
+                            }
+
+                            .input {
+                                &:checked + label {
+                                    color: @fontColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #hotpot_management {
+            #chicken_management;
+        }
+
+        #expense_management {
+            #chicken_management;
+        }
+
+        #report_management {
+            #chicken_management;
+
+            .main {
+                .title {
+                    a {
+                        color: rgb(@white);
+                    }
+                }
+
+                .summary {
+                    border: 1px solid rgb(@mainBrown);
+
+                    .item {
+                        .name {
+                            color: rgba(@mainBrown, .75);
+                        }
+
+                        .negative {
+                            color: @red;
+                        }
+                    }
+                }
+
+                .content {
+                    #title {
+                        color: rgba(@white, .9);
+                        background: rgba(@mainBrown, .75);
+                    }
+
+                    .list {
+                        .item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainBrown, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow3, .5);
+                            }
+
+                            .cell {
+                                .cell_btn_group {
+                                    .edit {
+                                        color: @navyGreen;
+                                    }
+
+                                    .delete {
+                                        color: rgb(@red);
+                                    }
+
+                                }
+                            }
+
+                            .money {
+                                .negative {
+                                    color: @red;
+                                }
+                            }
+
+                            .button {
+                                .edit {
+                                    color: @navyGreen;
+                                }
+
+                                .delete {
+                                    color: rgb(@red);
+                                }
+                            }
+                        }
+                    }
+
+                    .form_items {
+                        .single_question {
+                            background: rgba(@mainYellow3, .5);
+                        }
+                    }
+                }
+            }
+        }
+
+        #system_management {
+            #report_management;
+
+            .main {
+                .content {
+                    .list {
+                        .setting_item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainBrown, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow3, .5);
+                            }
+
+                            .value {
+                                color: rgba(0,0,0,.6);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .color4 {
+        color: @fontColor;
+        background: rgb(@mainGrey, .75);
+
+        #login_page {
+            .app_name {
+                color: rgb(@white);
+            }
+
+            .main {
+                background: rgba(@white, .95);
+                border: 1px solid rgb(@mainGrey);
+
+                .content {
+                    .item {
+                        border: 1px solid rgb(@mainGrey);
+
+                        .icon {
+                            color: rgb(@mainGrey);
+                        }
+
+                        input {
+                            color: @fontColor;
+                        }
+
+                        &.focus {
+                            border: 1px solid rgb(@mainYellow4);
+
+                            .icon {
+                                color: rgb(@mainYellow4);
+                            }
+                        }
+                    }
+                }
+
+                .btn_group {
+                    .btn_ok {
+                        background: rgba(@mainGrey, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainGrey);
+                        }
+                    }
+                }
+            }
+        }
+
+        #nav {
+            .block {
+                background: rgba(255, 255, 255, .8);
+
+                .item {
+                    color: @fontColor;
+
+                    .icon {
+                        color: rgba(@mainGrey, .8);
+                    }
+                }
+
+                .active {
+                    background: rgba(@mainYellow4, .9);
+
+                    .icon {
+                        color: rgb(@mainGrey);
+                    }
+                }
+            }
+        }
+
+        #msg_window {
+            background: rgba(@black, .2);
+
+            #msg_box {
+                background: rgb(@white);
+                border: 1px solid rgb(@mainGrey);
+
+                .title {
+                    color: @fontColorDark;
+                }
+
+                .btn_group {
+                    .btn {
+                        background: rgba(@mainGrey, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainGrey);
+                        }
+                    }
+
+                    .btn_no {
+                        border: 1px solid rgb(@mainGrey);
+                        background: none;
+                        color: rgb(@mainGrey);
+
+                        &:hover {
+                            background: none;
+                            border: 1px solid rgb(@mainYellow4);
+                            color: rgb(@mainYellow4);
+                        }
+                    }
+                }
+            }
+        }
+
+        #home_management {
+            .item {
+                background: rgba(@white, .95);
+
+                .des {
+                    color: rgb(@mainGrey);
+                }
+
+                .negative {
+                    color: @red;
+                }
+            }
+        }
+
+        #chicken_management {
+            #bg {
+                .left {
+                    background: @color4_l;
+                }
+
+                .right {
+                    background: @color4_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .title {
+                    color: rgba(@white, .9);
+                    background: rgba(@mainGrey, .75);
+                }
+
+                .content {
+                    .item {
+                        &:nth-child(even of :not(.hide)) {
+                            background: rgba(@mainYellow4, .5);
+                        }
+
+                        .des {
+                            color: rgb(@mainGrey);
+                        }
+
+                        input,
+                        select {
+                            color: @fontColor;
+                        }
+
+                        fieldset {
+                            label {
+                                color: rgba(@mainGrey, .3);
+                            }
+
+                            .input {
+                                &:checked + label {
+                                    color: @fontColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #hotpot_management {
+            #chicken_management;
+        }
+
+        #expense_management {
+            #chicken_management;
+        }
+
+        #report_management {
+            #chicken_management;
+
+            .main {
+                .title {
+                    a {
+                        color: rgb(@white);
+                    }
+                }
+
+                .summary {
+                    border: 1px solid rgb(@mainGrey);
+
+                    .item {
+                        .name {
+                            color: rgba(@mainGrey, .75);
+                        }
+
+                        .negative {
+                            color: @red;
+                        }
+                    }
+                }
+
+                .content {
+                    #title {
+                        color: rgba(@white, .9);
+                        background: rgba(@mainGrey, .75);
+                    }
+
+                    .list {
+                        .item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainGrey, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow4, .5);
+                            }
+
+                            .cell {
+                                .cell_btn_group {
+                                    .edit {
+                                        color: @navyGreen;
+                                    }
+
+                                    .delete {
+                                        color: rgb(@red);
+                                    }
+
+                                }
+                            }
+
+                            .money {
+                                .negative {
+                                    color: @red;
+                                }
+                            }
+
+                            .button {
+                                .edit {
+                                    color: @navyGreen;
+                                }
+
+                                .delete {
+                                    color: rgb(@red);
+                                }
+                            }
+                        }
+                    }
+
+                    .form_items {
+                        .single_question {
+                            background: rgba(@mainYellow4, .5);
+                        }
+                    }
+                }
+            }
+        }
+
+        #system_management {
+            #report_management;
+
+            .main {
+                .content {
+                    .list {
+                        .setting_item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainGrey, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow4, .5);
+                            }
+
+                            .value {
+                                color: rgba(0,0,0,.6);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .color5 {
+        color: @fontColor;
+        background: rgb(@mainBlue, .75);
+
+        #login_page {
+            .app_name {
+                color: rgb(@white);
+            }
+
+            .main {
+                background: rgba(@white, .95);
+                border: 1px solid rgb(@mainBlue);
+
+                .content {
+                    .item {
+                        border: 1px solid rgb(@mainBlue);
+
+                        .icon {
+                            color: rgb(@mainBlue);
+                        }
+
+                        input {
+                            color: @fontColor;
+                        }
+
+                        &.focus {
+                            border: 1px solid rgb(@mainYellow5);
+
+                            .icon {
+                                color: rgb(@mainYellow5);
+                            }
+                        }
+                    }
+                }
+
+                .btn_group {
+                    .btn_ok {
+                        background: rgba(@mainBlue, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainBlue);
+                        }
+                    }
+                }
+            }
+        }
+
+        #nav {
+            .block {
+                background: rgba(255, 255, 255, .8);
+
+                .item {
+                    color: @fontColor;
+
+                    .icon {
+                        color: rgba(@mainBlue, .8);
+                    }
+                }
+
+                .active {
+                    background: rgba(@mainYellow5, .9);
+
+                    .icon {
+                        color: rgb(@mainBlue);
+                    }
+                }
+            }
+        }
+
+        #msg_window {
+            background: rgba(@black, .2);
+
+            #msg_box {
+                background: rgb(@white);
+                border: 1px solid rgb(@mainBlue);
+
+                .title {
+                    color: @fontColorDark;
+                }
+
+                .btn_group {
+                    .btn {
+                        background: rgba(@mainBlue, .8);
+                        color: rgb(@white);
+
+                        &:hover {
+                            background: rgb(@mainBlue);
+                        }
+                    }
+
+                    .btn_no {
+                        border: 1px solid rgb(@mainBlue);
+                        background: none;
+                        color: rgb(@mainBlue);
+
+                        &:hover {
+                            background: none;
+                            border: 1px solid rgb(@mainYellow5);
+                            color: rgb(@mainYellow5);
+                        }
+                    }
+                }
+            }
+        }
+
+        #home_management {
+            .item {
+                background: rgba(@white, .95);
+
+                .des {
+                    color: rgb(@mainBlue);
+                }
+
+                .negative {
+                    color: @red;
+                }
+            }
+        }
+
+        #chicken_management {
+            #bg {
+                .left {
+                    background: @color5_l;
+                }
+
+                .right {
+                    background: @color5_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .title {
+                    color: rgba(@white, .9);
+                    background: rgba(@mainBlue, .75);
+                }
+
+                .content {
+                    .item {
+                        &:nth-child(even of :not(.hide)) {
+                            background: rgba(@mainYellow5, .5);
+                        }
+
+                        .des {
+                            color: rgb(@mainBlue);
+                        }
+
+                        input,
+                        select {
+                            color: @fontColor;
+                        }
+
+                        fieldset {
+                            label {
+                                color: rgba(@mainBlue, .3);
+                            }
+
+                            .input {
+                                &:checked + label {
+                                    color: @fontColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #hotpot_management {
+            #chicken_management;
+        }
+
+        #expense_management {
+            #chicken_management;
+        }
+
+        #report_management {
+            #chicken_management;
+
+            .main {
+                .title {
+                    a {
+                        color: rgb(@white);
+                    }
+                }
+
+                .summary {
+                    border: 1px solid rgb(@mainBlue);
+
+                    .item {
+                        .name {
+                            color: rgba(@mainBlue, .75);
+                        }
+
+                        .negative {
+                            color: @red;
+                        }
+                    }
+                }
+
+                .content {
+                    #title {
+                        color: rgba(@white, .9);
+                        background: rgba(@mainBlue, .75);
+                    }
+
+                    .list {
+                        .item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainBlue, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow5, .5);
+                            }
+
+                            .cell {
+                                .cell_btn_group {
+                                    .edit {
+                                        color: @navyGreen;
+                                    }
+
+                                    .delete {
+                                        color: rgb(@red);
+                                    }
+
+                                }
+                            }
+
+                            .money {
+                                .negative {
+                                    color: @red;
+                                }
+                            }
+
+                            .button {
+                                .edit {
+                                    color: @navyGreen;
+                                }
+
+                                .delete {
+                                    color: rgb(@red);
+                                }
+                            }
+                        }
+                    }
+
+                    .form_items {
+                        .single_question {
+                            background: rgba(@mainYellow5, .5);
+                        }
+                    }
+                }
+            }
+        }
+
+        #system_management {
+            #report_management;
+
+            .main {
+                .content {
+                    .list {
+                        .setting_item {
+                            color: @fontColor;
+
+                            &:nth-child(odd) {
+                                background: rgba(@mainBlue, .4);
+                            }
+
+                            &:nth-child(even) {
+                                background: rgba(@mainYellow5, .5);
+                            }
+
+                            .value {
+                                color: rgba(0,0,0,.6);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

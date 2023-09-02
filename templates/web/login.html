@@ -1,0 +1,33 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block nav %}{% endblock %}
+{% block content %}
+  <div id="login_page">
+      <div class="app_name">{{ name.value }}</div>
+      <form action="{% url 'web:login' %}" class="main">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
+
+          <div class="content">
+              <div class="item">
+                  <i class="fa-solid fa-user-large icon"></i>
+                  <input type="text" name="account" placeholder="帳號" class="required">
+              </div>
+              <div class="item">
+                  <i class="fa-solid fa-lock icon"></i>
+                  <input type="password" name="password" placeholder="密碼" class="required">
+              </div>
+          </div>
+          <div class="btn_group">
+              <div class="btn_ok">登入</div>
+          </div>
+
+      </form>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}
+
