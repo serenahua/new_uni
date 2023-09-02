@@ -148,3 +148,5 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_SIGNUP_REDIRECT_URL = "/login"
 LOGIN_REDIRECT_URL = "/login"
 LOGIN_URL = "/login"
+
+CSRF_TRUSTED_ORIGINS = ['https://newuni-production.up.railway.app','https://*.127.0.0.1']
