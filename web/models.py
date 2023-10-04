@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+from auditlog.registry import auditlog
 
 class ExpenseItem(models.Model):
     name = models.CharField(max_length=128)
@@ -49,3 +50,10 @@ class Income(models.Model):
 class Setting(models.Model):
     name = models.CharField(max_length=128)
     value = models.CharField(max_length=128)
+
+
+# https://django-auditlog.readthedocs.io/en/latest/usage.html
+auditlog.register(ExpenseItem)
+auditlog.register(Expense)
+auditlog.register(Income)
+auditlog.register(Setting)
