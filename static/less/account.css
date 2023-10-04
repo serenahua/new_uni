@@ -44,13 +44,21 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+}
+body a {
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  outline: none;
 }
 body #wrapper {
   position: absolute;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   top: 0;
   left: 0;
 }
@@ -237,9 +245,9 @@ body #wrapper #nav {
   -ms-justify-content: center;
   -o-justify-content: center;
   justify-content: center;
-  width: max-content;
-  margin: 64px auto 0;
-  gap: 30px;
+  width: 1220px;
+  margin: 32px auto 0;
+  gap: 25px;
 }
 body #wrapper #nav .block {
   display: -webkit-flex;
@@ -257,14 +265,13 @@ body #wrapper #nav .block {
   -ms-align-items: center;
   -o-align-items: center;
   align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  -o-justify-content: center;
-  justify-content: center;
-  padding: 20px 40px;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  padding: 8px 30px;
   border-radius: 20px;
-  gap: 40px;
 }
 body #wrapper #nav .block .item {
   display: -webkit-flex;
@@ -291,26 +298,50 @@ body #wrapper #nav .block .item {
   font-size: 24px;
   text-decoration: none;
   outline: none;
-  padding: 8px 20px;
+  padding: 5px 20px;
 }
 body #wrapper #nav .block .item:hover {
   opacity: 0.8;
 }
+body #wrapper #nav .block .item .img {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
 body #wrapper #nav .block .item .icon {
-  font-size: 32px;
+  font-size: 28px;
 }
 body #wrapper #nav .block .active {
   font-weight: bold;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 body #wrapper #nav .block .active:hover {
   opacity: 1;
 }
 body #wrapper #nav .block:nth-child(2) {
-  padding: 20px 10px;
+  padding: 10px 10px;
 }
-body #wrapper #nav .block:nth-child(2):hover {
-  opacity: 0.8;
+body #wrapper #nav .main {
+  flex: 1;
 }
 body #wrapper #msg_window {
   display: -webkit-flex;
@@ -475,7 +506,7 @@ body #wrapper #home_management {
   -o-justify-content: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
-  width: 80%;
+  width: 1220px;
   margin: auto;
   margin-top: 87px;
   gap: 12px;
@@ -521,6 +552,396 @@ body #wrapper #home_management .item:first-child {
 body #wrapper #home_management .item:first-child .value {
   margin-top: 0;
   font-size: 84px;
+}
+body #wrapper #tracking_management {
+  position: relative;
+  width: 1220px;
+  height: 626px;
+  margin: 35px auto 0;
+  box-sizing: border-box;
+}
+body #wrapper #tracking_management #bg {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+body #wrapper #tracking_management #bg .left,
+body #wrapper #tracking_management #bg .right {
+  width: 50%;
+  height: 100%;
+  border-radius: 20px;
+}
+body #wrapper #tracking_management .main {
+  position: absolute;
+  left: 90px;
+  width: calc(100% - 180px);
+  height: 100%;
+  margin: auto;
+  z-index: 2;
+}
+body #wrapper #tracking_management .main #datepicker {
+  position: absolute;
+  right: 155px;
+  top: 40px;
+}
+body #wrapper #tracking_management .main .header {
+  width: 996px;
+  margin: 21px auto 0;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+}
+body #wrapper #tracking_management .main .header .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 3px 0 0 3px;
+}
+body #wrapper #tracking_management .main .header label {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  margin-right: 1px;
+  cursor: pointer;
+}
+body #wrapper #tracking_management .main .header .date {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  margin-right: 8px;
+}
+body #wrapper #tracking_management .main .calendar {
+  width: 996px;
+  margin: 10px auto 0;
+}
+body #wrapper #tracking_management .main .calendar .calendar_head {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #tracking_management .main .calendar .calendar_head .item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  height: 35px;
+  border: 1px solid rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  flex: 1;
+  box-sizing: border-box;
+}
+body #wrapper #tracking_management .main .calendar .calendar_head .item:first-child {
+  border-radius: 10px 0 0 0;
+}
+body #wrapper #tracking_management .main .calendar .calendar_head .item:last-child {
+  border-radius: 0 10px 0 0;
+}
+body #wrapper #tracking_management .main .calendar .calendar_body {
+  width: 100%;
+}
+body #wrapper #tracking_management .main .calendar .calendar_body .calendar_row {
+  width: 100%;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #tracking_management .main .calendar .calendar_body .calendar_row .item {
+  height: 85px;
+  border: 1px solid rgb(255, 255, 255);
+  flex: 1;
+  box-sizing: border-box;
+}
+body #wrapper #tracking_management .main .calendar .calendar_body .calendar_row .item .item_text {
+  margin: 10px 0 0 10px;
+}
+body #wrapper #tracking_management .main .calendar .calendar_body .calendar_row .active_item {
+  cursor: pointer;
+}
+body #wrapper #tracking_management .main .calendar .calendar_body .calendar_row .active_item .item_text {
+  width: fit-content;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #tracking_management .main .tracking_calendar .calendar_body .calendar_row .active_item:hover .item_text {
+  height: 65px;
+  width: calc(100% - 20px);
+  font-size: 24px;
+  font-weight: bold;
+}
+body #wrapper #tracking_management .main .content {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  -ms-align-items: flex-start;
+  -o-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  width: 996px;
+  margin: auto;
+}
+body #wrapper #tracking_management .main .content .item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -o-justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 20px 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  gap: 47px;
+  font-size: 36px;
+}
+body #wrapper #tracking_management .main .content .item input,
+body #wrapper #tracking_management .main .content .item select {
+  flex: 1;
+  font-size: 24px;
+  outline: none;
+  cursor: pointer;
+  padding: 15px 24px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-weight: bold;
+  appearance: none;
+  color: rgba(0, 0, 0, 0.75);
+}
+body #wrapper #tracking_management .main .content .item input:focus,
+body #wrapper #tracking_management .main .content .item select:focus {
+  cursor: default;
+}
+body #wrapper #tracking_management .main .content .item input::placeholder,
+body #wrapper #tracking_management .main .content .item select::placeholder {
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+body #wrapper #tracking_management .main .content .item input::-webkit-outer-spin-button,
+body #wrapper #tracking_management .main .content .item select::-webkit-outer-spin-button,
+body #wrapper #tracking_management .main .content .item input::-webkit-inner-spin-button,
+body #wrapper #tracking_management .main .content .item select::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+body #wrapper #tracking_management .main .content .item input:valid,
+body #wrapper #tracking_management .main .content .item select:valid {
+  font-weight: bold;
+}
+body #wrapper #tracking_management .main .content .item fieldset {
+  width: 150px;
+  margin: 0 5px;
+  padding: 0 20px;
+  border: 0;
+}
+body #wrapper #tracking_management .main .content .item fieldset label {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -o-justify-content: flex-start;
+  justify-content: flex-start;
+  gap: 9px;
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+}
+body #wrapper #tracking_management .main .content .item fieldset .input {
+  display: none;
+}
+body #wrapper #tracking_management .main .content .item fieldset .input:checked + label {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.75);
+}
+body #wrapper #tracking_management .main .content .hide {
+  display: none;
+}
+body #wrapper #tracking_management .main .btn_group {
+  position: absolute;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  gap: 20px;
+  right: -74px;
+  bottom: 26px;
+}
+body #wrapper #tracking_management .main .btn_group .btn {
+  width: 60px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+body #wrapper #tracking_management .main .btn_group .btn:hover {
+  opacity: 0.8;
+}
+body #wrapper #tracking_management .main .btn_group a:hover {
+  opacity: 0.8;
 }
 body #wrapper #chicken_management {
   position: relative;
@@ -1148,12 +1569,10 @@ body #wrapper #expense_management .main .btn_group a:hover {
 }
 body #wrapper #report_management {
   position: relative;
-  width: 80%;
-  height: 525px;
-  margin: 53px auto 0;
+  width: 1220px;
+  height: 626px;
+  margin: 35px auto 0;
   box-sizing: border-box;
-  height: 574px;
-  margin: 20px auto 0;
 }
 body #wrapper #report_management #bg {
   display: -webkit-flex;
@@ -1195,19 +1614,181 @@ body #wrapper #report_management .main {
   margin: auto;
   z-index: 2;
 }
-body #wrapper #report_management .main .title {
-  padding: 0 30px;
-  width: calc(100% - 64px);
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 10px;
-  box-sizing: border-box;
-  margin: 20px auto 0;
+body #wrapper #report_management .main #datepicker {
+  position: absolute;
+  right: 155px;
+  top: 40px;
 }
-body #wrapper #report_management .main .title .prev,
-body #wrapper #report_management .main .title .next {
+body #wrapper #report_management .main .header {
+  width: 996px;
+  margin: 21px auto 0;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+}
+body #wrapper #report_management .main .header .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 3px 0 0 3px;
+}
+body #wrapper #report_management .main .header label {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  margin-right: 1px;
   cursor: pointer;
+}
+body #wrapper #report_management .main .header .date {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  margin-right: 8px;
+}
+body #wrapper #report_management .main .calendar {
+  width: 996px;
+  margin: 10px auto 0;
+}
+body #wrapper #report_management .main .calendar .calendar_head {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #report_management .main .calendar .calendar_head .item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  height: 35px;
+  border: 1px solid rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  flex: 1;
+  box-sizing: border-box;
+}
+body #wrapper #report_management .main .calendar .calendar_head .item:first-child {
+  border-radius: 10px 0 0 0;
+}
+body #wrapper #report_management .main .calendar .calendar_head .item:last-child {
+  border-radius: 0 10px 0 0;
+}
+body #wrapper #report_management .main .calendar .calendar_body {
+  width: 100%;
+}
+body #wrapper #report_management .main .calendar .calendar_body .calendar_row {
+  width: 100%;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #report_management .main .calendar .calendar_body .calendar_row .item {
+  height: 85px;
+  border: 1px solid rgb(255, 255, 255);
+  flex: 1;
+  box-sizing: border-box;
+}
+body #wrapper #report_management .main .calendar .calendar_body .calendar_row .item .item_text {
+  margin: 10px 0 0 10px;
+}
+body #wrapper #report_management .main .calendar .calendar_body .calendar_row .active_item {
+  cursor: pointer;
+}
+body #wrapper #report_management .main .calendar .calendar_body .calendar_row .active_item .item_text {
+  width: fit-content;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #report_management .main .tracking_calendar .calendar_body .calendar_row .active_item:hover .item_text {
+  height: 65px;
+  width: calc(100% - 20px);
+  font-size: 24px;
+  font-weight: bold;
 }
 body #wrapper #report_management .main .content {
   display: -webkit-flex;
@@ -1230,7 +1811,7 @@ body #wrapper #report_management .main .content {
   -ms-justify-content: center;
   -o-justify-content: center;
   justify-content: center;
-  width: calc(100% - 174px);
+  width: 996px;
   margin: auto;
 }
 body #wrapper #report_management .main .content .item {
@@ -1260,26 +1841,45 @@ body #wrapper #report_management .main .content .item {
   box-sizing: border-box;
   gap: 47px;
   font-size: 36px;
-  font-weight: bold;
 }
 body #wrapper #report_management .main .content .item input,
 body #wrapper #report_management .main .content .item select {
   flex: 1;
-  background: unset;
-  font-size: 36px;
-  font-weight: bold;
-  border: 0;
+  font-size: 24px;
   outline: none;
   cursor: pointer;
+  padding: 15px 24px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-weight: bold;
+  appearance: none;
+  color: rgba(0, 0, 0, 0.75);
 }
 body #wrapper #report_management .main .content .item input:focus,
 body #wrapper #report_management .main .content .item select:focus {
   cursor: default;
 }
+body #wrapper #report_management .main .content .item input::placeholder,
+body #wrapper #report_management .main .content .item select::placeholder {
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+body #wrapper #report_management .main .content .item input::-webkit-outer-spin-button,
+body #wrapper #report_management .main .content .item select::-webkit-outer-spin-button,
+body #wrapper #report_management .main .content .item input::-webkit-inner-spin-button,
+body #wrapper #report_management .main .content .item select::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+body #wrapper #report_management .main .content .item input:valid,
+body #wrapper #report_management .main .content .item select:valid {
+  font-weight: bold;
+}
 body #wrapper #report_management .main .content .item fieldset {
-  flex: 1;
+  width: 150px;
   margin: 0 5px;
-  padding: 0;
+  padding: 0 20px;
   border: 0;
 }
 body #wrapper #report_management .main .content .item fieldset label {
@@ -1306,13 +1906,14 @@ body #wrapper #report_management .main .content .item fieldset label {
   gap: 9px;
   position: relative;
   cursor: pointer;
-  font-size: 36px;
+  font-size: 24px;
 }
 body #wrapper #report_management .main .content .item fieldset .input {
   display: none;
 }
 body #wrapper #report_management .main .content .item fieldset .input:checked + label {
   font-weight: bold;
+  color: rgba(0, 0, 0, 0.75);
 }
 body #wrapper #report_management .main .content .hide {
   display: none;
@@ -1383,39 +1984,21 @@ body #wrapper #report_management .main .tabs {
   top: 26px;
 }
 body #wrapper #report_management .main .tabs .item img {
+  opacity: 0.6;
   width: 60px;
 }
-body #wrapper #report_management .main .tabs .item:hover {
+body #wrapper #report_management .main .tabs .item:hover img {
   opacity: 0.9 !important;
 }
 body #wrapper #report_management .main .tabs .active img {
   opacity: 1 !important;
   filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
 }
-body #wrapper #report_management .main .tabs .active:hover {
+body #wrapper #report_management .main .tabs .active:hover img {
   opacity: 1 !important;
 }
-body #wrapper #report_management .main .title {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  -o-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  align-items: center;
-  -webkit-justify-content: space-between;
-  -moz-justify-content: space-between;
-  -ms-justify-content: space-between;
-  -o-justify-content: space-between;
-  justify-content: space-between;
+body #wrapper #report_management .main .header .date {
+  margin-right: 0;
 }
 body #wrapper #report_management .main .summary {
   display: -webkit-flex;
@@ -1438,9 +2021,9 @@ body #wrapper #report_management .main .summary {
   -ms-justify-content: space-between;
   -o-justify-content: space-between;
   justify-content: space-between;
-  width: calc(100% - 64px);
+  width: 996px;
   height: 91px;
-  margin: 5px auto 0;
+  margin: 8px auto 0;
   padding: 10px 75px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -1467,6 +2050,7 @@ body #wrapper #report_management .main .summary .item {
   -o-justify-content: flex-start;
   justify-content: flex-start;
   gap: 2px;
+  min-width: 120px;
 }
 body #wrapper #report_management .main .summary .item .name {
   font-size: 20px;
@@ -1476,8 +2060,83 @@ body #wrapper #report_management .main .summary .item .num {
   font-size: 32px;
   font-weight: bold;
 }
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  gap: 10px;
+}
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_text {
+  margin-top: 0;
+}
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  height: 13px;
+  margin-top: 5px;
+  gap: 5px;
+}
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 100px;
+}
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  justify-content: flex-end;
+  font-size: 14px;
+  height: 61px;
+  gap: 2px;
+}
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .tag {
+  padding: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: right;
+}
+body #wrapper #report_management .main .report_calendar .calendar_body .calendar_row .item .hide {
+  display: none;
+}
 body #wrapper #report_management .main .content {
-  width: calc(100% - 64px);
+  width: 996px;
   margin: 20px auto 0;
 }
 body #wrapper #report_management .main .content #title {
@@ -1501,7 +2160,8 @@ body #wrapper #report_management .main .content #title {
   -ms-justify-content: center;
   -o-justify-content: center;
   justify-content: center;
-  width: 100%;
+  width: 976px;
+  margin: auto;
   font-size: 36px;
   font-weight: bold;
   border-radius: 10px;
@@ -1527,8 +2187,9 @@ body #wrapper #report_management .main .content .list {
   -ms-justify-content: flex-start;
   -o-justify-content: flex-start;
   justify-content: flex-start;
-  height: 370px;
-  width: 100%;
+  height: 430px;
+  width: 976px;
+  margin: auto;
   gap: 5px;
   overflow: hidden;
   overflow-y: auto;
@@ -1625,14 +2286,20 @@ body #wrapper #report_management .main .content .list .item .money {
   gap: 5px;
 }
 body #wrapper #report_management .main .content .list .item .money span {
-  min-width: 60px;
+  min-width: 90px;
   text-align: right;
 }
 body #wrapper #report_management .main .content .list .item .name {
-  width: 100px;
+  width: 127px;
 }
 body #wrapper #report_management .main .content .list .item .category {
-  width: 350px;
+  width: 220px;
+}
+body #wrapper #report_management .main .content .list .item .remark {
+  width: 330px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 body #wrapper #report_management .main .content .list .item .button {
   display: -webkit-flex;
@@ -1647,24 +2314,17 @@ body #wrapper #report_management .main .content .list .item .button .delete {
   cursor: pointer;
 }
 body #wrapper #report_management .main .content .form_items {
-  padding: 0 40px;
   box-sizing: border-box;
-  margin-top: 57px;
+  margin-top: 17px;
   height: 200px;
   width: 100%;
 }
-body #wrapper #report_management.form_style {
-  height: 525px;
-  margin: 53px auto 0;
-}
 body #wrapper #system_management {
   position: relative;
-  width: 80%;
-  height: 525px;
-  margin: 53px auto 0;
+  width: 1220px;
+  height: 626px;
+  margin: 35px auto 0;
   box-sizing: border-box;
-  height: 574px;
-  margin: 20px auto 0;
 }
 body #wrapper #system_management #bg {
   display: -webkit-flex;
@@ -1706,19 +2366,181 @@ body #wrapper #system_management .main {
   margin: auto;
   z-index: 2;
 }
-body #wrapper #system_management .main .title {
-  padding: 0 30px;
-  width: calc(100% - 64px);
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 10px;
-  box-sizing: border-box;
-  margin: 20px auto 0;
+body #wrapper #system_management .main #datepicker {
+  position: absolute;
+  right: 155px;
+  top: 40px;
 }
-body #wrapper #system_management .main .title .prev,
-body #wrapper #system_management .main .title .next {
+body #wrapper #system_management .main .header {
+  width: 996px;
+  margin: 21px auto 0;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+}
+body #wrapper #system_management .main .header .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 3px 0 0 3px;
+}
+body #wrapper #system_management .main .header label {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  margin-right: 1px;
   cursor: pointer;
+}
+body #wrapper #system_management .main .header .date {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  margin-right: 8px;
+}
+body #wrapper #system_management .main .calendar {
+  width: 996px;
+  margin: 10px auto 0;
+}
+body #wrapper #system_management .main .calendar .calendar_head {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #system_management .main .calendar .calendar_head .item {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  height: 35px;
+  border: 1px solid rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  flex: 1;
+  box-sizing: border-box;
+}
+body #wrapper #system_management .main .calendar .calendar_head .item:first-child {
+  border-radius: 10px 0 0 0;
+}
+body #wrapper #system_management .main .calendar .calendar_head .item:last-child {
+  border-radius: 0 10px 0 0;
+}
+body #wrapper #system_management .main .calendar .calendar_body {
+  width: 100%;
+}
+body #wrapper #system_management .main .calendar .calendar_body .calendar_row {
+  width: 100%;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #system_management .main .calendar .calendar_body .calendar_row .item {
+  height: 85px;
+  border: 1px solid rgb(255, 255, 255);
+  flex: 1;
+  box-sizing: border-box;
+}
+body #wrapper #system_management .main .calendar .calendar_body .calendar_row .item .item_text {
+  margin: 10px 0 0 10px;
+}
+body #wrapper #system_management .main .calendar .calendar_body .calendar_row .active_item {
+  cursor: pointer;
+}
+body #wrapper #system_management .main .calendar .calendar_body .calendar_row .active_item .item_text {
+  width: fit-content;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+body #wrapper #system_management .main .tracking_calendar .calendar_body .calendar_row .active_item:hover .item_text {
+  height: 65px;
+  width: calc(100% - 20px);
+  font-size: 24px;
+  font-weight: bold;
 }
 body #wrapper #system_management .main .content {
   display: -webkit-flex;
@@ -1741,7 +2563,7 @@ body #wrapper #system_management .main .content {
   -ms-justify-content: center;
   -o-justify-content: center;
   justify-content: center;
-  width: calc(100% - 174px);
+  width: 996px;
   margin: auto;
 }
 body #wrapper #system_management .main .content .item {
@@ -1771,26 +2593,45 @@ body #wrapper #system_management .main .content .item {
   box-sizing: border-box;
   gap: 47px;
   font-size: 36px;
-  font-weight: bold;
 }
 body #wrapper #system_management .main .content .item input,
 body #wrapper #system_management .main .content .item select {
   flex: 1;
-  background: unset;
-  font-size: 36px;
-  font-weight: bold;
-  border: 0;
+  font-size: 24px;
   outline: none;
   cursor: pointer;
+  padding: 15px 24px;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-weight: bold;
+  appearance: none;
+  color: rgba(0, 0, 0, 0.75);
 }
 body #wrapper #system_management .main .content .item input:focus,
 body #wrapper #system_management .main .content .item select:focus {
   cursor: default;
 }
+body #wrapper #system_management .main .content .item input::placeholder,
+body #wrapper #system_management .main .content .item select::placeholder {
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+body #wrapper #system_management .main .content .item input::-webkit-outer-spin-button,
+body #wrapper #system_management .main .content .item select::-webkit-outer-spin-button,
+body #wrapper #system_management .main .content .item input::-webkit-inner-spin-button,
+body #wrapper #system_management .main .content .item select::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+body #wrapper #system_management .main .content .item input:valid,
+body #wrapper #system_management .main .content .item select:valid {
+  font-weight: bold;
+}
 body #wrapper #system_management .main .content .item fieldset {
-  flex: 1;
+  width: 150px;
   margin: 0 5px;
-  padding: 0;
+  padding: 0 20px;
   border: 0;
 }
 body #wrapper #system_management .main .content .item fieldset label {
@@ -1817,13 +2658,14 @@ body #wrapper #system_management .main .content .item fieldset label {
   gap: 9px;
   position: relative;
   cursor: pointer;
-  font-size: 36px;
+  font-size: 24px;
 }
 body #wrapper #system_management .main .content .item fieldset .input {
   display: none;
 }
 body #wrapper #system_management .main .content .item fieldset .input:checked + label {
   font-weight: bold;
+  color: rgba(0, 0, 0, 0.75);
 }
 body #wrapper #system_management .main .content .hide {
   display: none;
@@ -1894,39 +2736,21 @@ body #wrapper #system_management .main .tabs {
   top: 26px;
 }
 body #wrapper #system_management .main .tabs .item img {
+  opacity: 0.6;
   width: 60px;
 }
-body #wrapper #system_management .main .tabs .item:hover {
+body #wrapper #system_management .main .tabs .item:hover img {
   opacity: 0.9 !important;
 }
 body #wrapper #system_management .main .tabs .active img {
   opacity: 1 !important;
   filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
 }
-body #wrapper #system_management .main .tabs .active:hover {
+body #wrapper #system_management .main .tabs .active:hover img {
   opacity: 1 !important;
 }
-body #wrapper #system_management .main .title {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  -o-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  align-items: center;
-  -webkit-justify-content: space-between;
-  -moz-justify-content: space-between;
-  -ms-justify-content: space-between;
-  -o-justify-content: space-between;
-  justify-content: space-between;
+body #wrapper #system_management .main .header .date {
+  margin-right: 0;
 }
 body #wrapper #system_management .main .summary {
   display: -webkit-flex;
@@ -1949,9 +2773,9 @@ body #wrapper #system_management .main .summary {
   -ms-justify-content: space-between;
   -o-justify-content: space-between;
   justify-content: space-between;
-  width: calc(100% - 64px);
+  width: 996px;
   height: 91px;
-  margin: 5px auto 0;
+  margin: 8px auto 0;
   padding: 10px 75px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -1978,6 +2802,7 @@ body #wrapper #system_management .main .summary .item {
   -o-justify-content: flex-start;
   justify-content: flex-start;
   gap: 2px;
+  min-width: 120px;
 }
 body #wrapper #system_management .main .summary .item .name {
   font-size: 20px;
@@ -1987,8 +2812,83 @@ body #wrapper #system_management .main .summary .item .num {
   font-size: 32px;
   font-weight: bold;
 }
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  gap: 10px;
+}
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_text {
+  margin-top: 0;
+}
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  height: 13px;
+  margin-top: 5px;
+  gap: 5px;
+}
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 100px;
+}
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  justify-content: flex-end;
+  font-size: 14px;
+  height: 61px;
+  gap: 2px;
+}
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .tag {
+  padding: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: right;
+}
+body #wrapper #system_management .main .report_calendar .calendar_body .calendar_row .item .hide {
+  display: none;
+}
 body #wrapper #system_management .main .content {
-  width: calc(100% - 64px);
+  width: 996px;
   margin: 20px auto 0;
 }
 body #wrapper #system_management .main .content #title {
@@ -2012,7 +2912,8 @@ body #wrapper #system_management .main .content #title {
   -ms-justify-content: center;
   -o-justify-content: center;
   justify-content: center;
-  width: 100%;
+  width: 976px;
+  margin: auto;
   font-size: 36px;
   font-weight: bold;
   border-radius: 10px;
@@ -2038,8 +2939,9 @@ body #wrapper #system_management .main .content .list {
   -ms-justify-content: flex-start;
   -o-justify-content: flex-start;
   justify-content: flex-start;
-  height: 370px;
-  width: 100%;
+  height: 430px;
+  width: 976px;
+  margin: auto;
   gap: 5px;
   overflow: hidden;
   overflow-y: auto;
@@ -2136,14 +3038,20 @@ body #wrapper #system_management .main .content .list .item .money {
   gap: 5px;
 }
 body #wrapper #system_management .main .content .list .item .money span {
-  min-width: 60px;
+  min-width: 90px;
   text-align: right;
 }
 body #wrapper #system_management .main .content .list .item .name {
-  width: 100px;
+  width: 127px;
 }
 body #wrapper #system_management .main .content .list .item .category {
-  width: 350px;
+  width: 220px;
+}
+body #wrapper #system_management .main .content .list .item .remark {
+  width: 330px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 body #wrapper #system_management .main .content .list .item .button {
   display: -webkit-flex;
@@ -2158,25 +3066,17 @@ body #wrapper #system_management .main .content .list .item .button .delete {
   cursor: pointer;
 }
 body #wrapper #system_management .main .content .form_items {
-  padding: 0 40px;
   box-sizing: border-box;
-  margin-top: 57px;
+  margin-top: 17px;
   height: 200px;
   width: 100%;
-}
-body #wrapper #system_management.form_style {
-  height: 525px;
-  margin: 53px auto 0;
-}
-body #wrapper #system_management .main .tabs .item img {
-  opacity: 0.7;
 }
 body #wrapper #system_management .main .content {
   margin: 25px auto 0;
 }
 body #wrapper #system_management .main .content .list {
   margin-top: 32px;
-  height: 435px;
+  height: 490px;
 }
 body #wrapper #system_management .main .content .list .item {
   gap: 20px;
@@ -2353,6 +3253,38 @@ body .color1 #home_management .item .des {
 body .color1 #home_management .item .negative {
   color: #db5f41;
 }
+body .color1 #tracking_management #bg .left {
+  background: #76C7D9;
+}
+body .color1 #tracking_management #bg .right {
+  background: #6DC5B0;
+}
+body .color1 #tracking_management .main {
+  background: rgb(255, 255, 255);
+}
+body .color1 #tracking_management .main .header .title {
+  color: rgba(96, 149, 95, 0.75);
+}
+body .color1 #tracking_management .main .header label,
+body .color1 #tracking_management .main .header .date {
+  background: rgba(96, 149, 95, 0.75);
+  color: rgba(255, 255, 255, 0.9);
+}
+body .color1 #tracking_management .main .calendar .calendar_head .item {
+  background: rgba(96, 149, 95, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+}
+body .color1 #tracking_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(96, 149, 95, 0.15);
+}
+body .color1 #tracking_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(96, 149, 95, 0.3);
+}
+body .color1 #tracking_management .main .content .item input,
+body .color1 #tracking_management .main .content .item select {
+  border: 1px solid rgb(96, 149, 95);
+  background: rgba(96, 149, 95, 0.2);
+}
 body .color1 #chicken_management #bg .left {
   background: #76C7D9;
 }
@@ -2449,25 +3381,28 @@ body .color1 #report_management #bg .right {
 body .color1 #report_management .main {
   background: rgb(255, 255, 255);
 }
-body .color1 #report_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color1 #report_management .main .header .title {
+  color: rgba(96, 149, 95, 0.75);
+}
+body .color1 #report_management .main .header label,
+body .color1 #report_management .main .header .date {
   background: rgba(96, 149, 95, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color1 #report_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(251, 201, 92, 0.5);
+body .color1 #report_management .main .calendar .calendar_head .item {
+  background: rgba(96, 149, 95, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color1 #report_management .main .content .item .des {
-  color: rgb(96, 149, 95);
+body .color1 #report_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(96, 149, 95, 0.15);
+}
+body .color1 #report_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(96, 149, 95, 0.3);
 }
 body .color1 #report_management .main .content .item input,
 body .color1 #report_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color1 #report_management .main .content .item fieldset label {
-  color: rgba(96, 149, 95, 0.3);
-}
-body .color1 #report_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(96, 149, 95);
+  background: rgba(96, 149, 95, 0.2);
 }
 body .color1 #report_management .main .title a {
   color: rgb(255, 255, 255);
@@ -2480,6 +3415,22 @@ body .color1 #report_management .main .summary .item .name {
 }
 body .color1 #report_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color1 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(96, 149, 95, 0.4);
+}
+body .color1 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(96, 149, 95, 0.7);
+}
+body .color1 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(251, 201, 92, 0.7);
+}
+body .color1 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color1 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(251, 201, 92, 0.5);
+}
+body .color1 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(251, 201, 92);
 }
 body .color1 #report_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -2509,9 +3460,6 @@ body .color1 #report_management .main .content .list .item .button .edit {
 body .color1 #report_management .main .content .list .item .button .delete {
   color: #db5f41;
 }
-body .color1 #report_management .main .content .form_items .single_question {
-  background: rgba(251, 201, 92, 0.5);
-}
 body .color1 #system_management #bg .left {
   background: #76C7D9;
 }
@@ -2521,25 +3469,28 @@ body .color1 #system_management #bg .right {
 body .color1 #system_management .main {
   background: rgb(255, 255, 255);
 }
-body .color1 #system_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color1 #system_management .main .header .title {
+  color: rgba(96, 149, 95, 0.75);
+}
+body .color1 #system_management .main .header label,
+body .color1 #system_management .main .header .date {
   background: rgba(96, 149, 95, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color1 #system_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(251, 201, 92, 0.5);
+body .color1 #system_management .main .calendar .calendar_head .item {
+  background: rgba(96, 149, 95, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color1 #system_management .main .content .item .des {
-  color: rgb(96, 149, 95);
+body .color1 #system_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(96, 149, 95, 0.15);
+}
+body .color1 #system_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(96, 149, 95, 0.3);
 }
 body .color1 #system_management .main .content .item input,
 body .color1 #system_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color1 #system_management .main .content .item fieldset label {
-  color: rgba(96, 149, 95, 0.3);
-}
-body .color1 #system_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(96, 149, 95);
+  background: rgba(96, 149, 95, 0.2);
 }
 body .color1 #system_management .main .title a {
   color: rgb(255, 255, 255);
@@ -2552,6 +3503,22 @@ body .color1 #system_management .main .summary .item .name {
 }
 body .color1 #system_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color1 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(96, 149, 95, 0.4);
+}
+body .color1 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(96, 149, 95, 0.7);
+}
+body .color1 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(251, 201, 92, 0.7);
+}
+body .color1 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color1 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(251, 201, 92, 0.5);
+}
+body .color1 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(251, 201, 92);
 }
 body .color1 #system_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -2580,9 +3547,6 @@ body .color1 #system_management .main .content .list .item .button .edit {
 }
 body .color1 #system_management .main .content .list .item .button .delete {
   color: #db5f41;
-}
-body .color1 #system_management .main .content .form_items .single_question {
-  background: rgba(251, 201, 92, 0.5);
 }
 body .color1 #system_management .main .content .list .setting_item {
   color: rgba(0, 0, 0, 0.5);
@@ -2680,6 +3644,38 @@ body .color2 #home_management .item .des {
 body .color2 #home_management .item .negative {
   color: #db5f41;
 }
+body .color2 #tracking_management #bg .left {
+  background: #847499;
+}
+body .color2 #tracking_management #bg .right {
+  background: #E2CBD3;
+}
+body .color2 #tracking_management .main {
+  background: rgb(255, 255, 255);
+}
+body .color2 #tracking_management .main .header .title {
+  color: rgba(145, 107, 132, 0.75);
+}
+body .color2 #tracking_management .main .header label,
+body .color2 #tracking_management .main .header .date {
+  background: rgba(145, 107, 132, 0.75);
+  color: rgba(255, 255, 255, 0.9);
+}
+body .color2 #tracking_management .main .calendar .calendar_head .item {
+  background: rgba(145, 107, 132, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+}
+body .color2 #tracking_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(145, 107, 132, 0.15);
+}
+body .color2 #tracking_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(145, 107, 132, 0.3);
+}
+body .color2 #tracking_management .main .content .item input,
+body .color2 #tracking_management .main .content .item select {
+  border: 1px solid rgb(145, 107, 132);
+  background: rgba(145, 107, 132, 0.2);
+}
 body .color2 #chicken_management #bg .left {
   background: #847499;
 }
@@ -2776,25 +3772,28 @@ body .color2 #report_management #bg .right {
 body .color2 #report_management .main {
   background: rgb(255, 255, 255);
 }
-body .color2 #report_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color2 #report_management .main .header .title {
+  color: rgba(145, 107, 132, 0.75);
+}
+body .color2 #report_management .main .header label,
+body .color2 #report_management .main .header .date {
   background: rgba(145, 107, 132, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color2 #report_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(238, 201, 121, 0.5);
+body .color2 #report_management .main .calendar .calendar_head .item {
+  background: rgba(145, 107, 132, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color2 #report_management .main .content .item .des {
-  color: rgb(145, 107, 132);
+body .color2 #report_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(145, 107, 132, 0.15);
+}
+body .color2 #report_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(145, 107, 132, 0.3);
 }
 body .color2 #report_management .main .content .item input,
 body .color2 #report_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color2 #report_management .main .content .item fieldset label {
-  color: rgba(145, 107, 132, 0.3);
-}
-body .color2 #report_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(145, 107, 132);
+  background: rgba(145, 107, 132, 0.2);
 }
 body .color2 #report_management .main .title a {
   color: rgb(255, 255, 255);
@@ -2807,6 +3806,22 @@ body .color2 #report_management .main .summary .item .name {
 }
 body .color2 #report_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color2 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(145, 107, 132, 0.4);
+}
+body .color2 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(145, 107, 132, 0.7);
+}
+body .color2 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(238, 201, 121, 0.7);
+}
+body .color2 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color2 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(238, 201, 121, 0.5);
+}
+body .color2 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(238, 201, 121);
 }
 body .color2 #report_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -2836,9 +3851,6 @@ body .color2 #report_management .main .content .list .item .button .edit {
 body .color2 #report_management .main .content .list .item .button .delete {
   color: #db5f41;
 }
-body .color2 #report_management .main .content .form_items .single_question {
-  background: rgba(238, 201, 121, 0.5);
-}
 body .color2 #system_management #bg .left {
   background: #847499;
 }
@@ -2848,25 +3860,28 @@ body .color2 #system_management #bg .right {
 body .color2 #system_management .main {
   background: rgb(255, 255, 255);
 }
-body .color2 #system_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color2 #system_management .main .header .title {
+  color: rgba(145, 107, 132, 0.75);
+}
+body .color2 #system_management .main .header label,
+body .color2 #system_management .main .header .date {
   background: rgba(145, 107, 132, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color2 #system_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(238, 201, 121, 0.5);
+body .color2 #system_management .main .calendar .calendar_head .item {
+  background: rgba(145, 107, 132, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color2 #system_management .main .content .item .des {
-  color: rgb(145, 107, 132);
+body .color2 #system_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(145, 107, 132, 0.15);
+}
+body .color2 #system_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(145, 107, 132, 0.3);
 }
 body .color2 #system_management .main .content .item input,
 body .color2 #system_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color2 #system_management .main .content .item fieldset label {
-  color: rgba(145, 107, 132, 0.3);
-}
-body .color2 #system_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(145, 107, 132);
+  background: rgba(145, 107, 132, 0.2);
 }
 body .color2 #system_management .main .title a {
   color: rgb(255, 255, 255);
@@ -2879,6 +3894,22 @@ body .color2 #system_management .main .summary .item .name {
 }
 body .color2 #system_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color2 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(145, 107, 132, 0.4);
+}
+body .color2 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(145, 107, 132, 0.7);
+}
+body .color2 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(238, 201, 121, 0.7);
+}
+body .color2 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color2 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(238, 201, 121, 0.5);
+}
+body .color2 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(238, 201, 121);
 }
 body .color2 #system_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -2907,9 +3938,6 @@ body .color2 #system_management .main .content .list .item .button .edit {
 }
 body .color2 #system_management .main .content .list .item .button .delete {
   color: #db5f41;
-}
-body .color2 #system_management .main .content .form_items .single_question {
-  background: rgba(238, 201, 121, 0.5);
 }
 body .color2 #system_management .main .content .list .setting_item {
   color: rgba(0, 0, 0, 0.5);
@@ -3007,6 +4035,38 @@ body .color3 #home_management .item .des {
 body .color3 #home_management .item .negative {
   color: #db5f41;
 }
+body .color3 #tracking_management #bg .left {
+  background: #CA9D41;
+}
+body .color3 #tracking_management #bg .right {
+  background: #E7B872;
+}
+body .color3 #tracking_management .main {
+  background: rgb(255, 255, 255);
+}
+body .color3 #tracking_management .main .header .title {
+  color: rgba(110, 73, 41, 0.75);
+}
+body .color3 #tracking_management .main .header label,
+body .color3 #tracking_management .main .header .date {
+  background: rgba(110, 73, 41, 0.75);
+  color: rgba(255, 255, 255, 0.9);
+}
+body .color3 #tracking_management .main .calendar .calendar_head .item {
+  background: rgba(110, 73, 41, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+}
+body .color3 #tracking_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(110, 73, 41, 0.15);
+}
+body .color3 #tracking_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(110, 73, 41, 0.3);
+}
+body .color3 #tracking_management .main .content .item input,
+body .color3 #tracking_management .main .content .item select {
+  border: 1px solid rgb(110, 73, 41);
+  background: rgba(110, 73, 41, 0.2);
+}
 body .color3 #chicken_management #bg .left {
   background: #CA9D41;
 }
@@ -3103,25 +4163,28 @@ body .color3 #report_management #bg .right {
 body .color3 #report_management .main {
   background: rgb(255, 255, 255);
 }
-body .color3 #report_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color3 #report_management .main .header .title {
+  color: rgba(110, 73, 41, 0.75);
+}
+body .color3 #report_management .main .header label,
+body .color3 #report_management .main .header .date {
   background: rgba(110, 73, 41, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color3 #report_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(251, 201, 92, 0.5);
+body .color3 #report_management .main .calendar .calendar_head .item {
+  background: rgba(110, 73, 41, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color3 #report_management .main .content .item .des {
-  color: rgb(110, 73, 41);
+body .color3 #report_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(110, 73, 41, 0.15);
+}
+body .color3 #report_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(110, 73, 41, 0.3);
 }
 body .color3 #report_management .main .content .item input,
 body .color3 #report_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color3 #report_management .main .content .item fieldset label {
-  color: rgba(110, 73, 41, 0.3);
-}
-body .color3 #report_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(110, 73, 41);
+  background: rgba(110, 73, 41, 0.2);
 }
 body .color3 #report_management .main .title a {
   color: rgb(255, 255, 255);
@@ -3134,6 +4197,22 @@ body .color3 #report_management .main .summary .item .name {
 }
 body .color3 #report_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color3 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(110, 73, 41, 0.4);
+}
+body .color3 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(110, 73, 41, 0.7);
+}
+body .color3 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(251, 201, 92, 0.7);
+}
+body .color3 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color3 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(251, 201, 92, 0.5);
+}
+body .color3 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(251, 201, 92);
 }
 body .color3 #report_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -3163,9 +4242,6 @@ body .color3 #report_management .main .content .list .item .button .edit {
 body .color3 #report_management .main .content .list .item .button .delete {
   color: #db5f41;
 }
-body .color3 #report_management .main .content .form_items .single_question {
-  background: rgba(251, 201, 92, 0.5);
-}
 body .color3 #system_management #bg .left {
   background: #CA9D41;
 }
@@ -3175,25 +4251,28 @@ body .color3 #system_management #bg .right {
 body .color3 #system_management .main {
   background: rgb(255, 255, 255);
 }
-body .color3 #system_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color3 #system_management .main .header .title {
+  color: rgba(110, 73, 41, 0.75);
+}
+body .color3 #system_management .main .header label,
+body .color3 #system_management .main .header .date {
   background: rgba(110, 73, 41, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color3 #system_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(251, 201, 92, 0.5);
+body .color3 #system_management .main .calendar .calendar_head .item {
+  background: rgba(110, 73, 41, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color3 #system_management .main .content .item .des {
-  color: rgb(110, 73, 41);
+body .color3 #system_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(110, 73, 41, 0.15);
+}
+body .color3 #system_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(110, 73, 41, 0.3);
 }
 body .color3 #system_management .main .content .item input,
 body .color3 #system_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color3 #system_management .main .content .item fieldset label {
-  color: rgba(110, 73, 41, 0.3);
-}
-body .color3 #system_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(110, 73, 41);
+  background: rgba(110, 73, 41, 0.2);
 }
 body .color3 #system_management .main .title a {
   color: rgb(255, 255, 255);
@@ -3206,6 +4285,22 @@ body .color3 #system_management .main .summary .item .name {
 }
 body .color3 #system_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color3 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(110, 73, 41, 0.4);
+}
+body .color3 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(110, 73, 41, 0.7);
+}
+body .color3 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(251, 201, 92, 0.7);
+}
+body .color3 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color3 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(251, 201, 92, 0.5);
+}
+body .color3 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(251, 201, 92);
 }
 body .color3 #system_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -3234,9 +4329,6 @@ body .color3 #system_management .main .content .list .item .button .edit {
 }
 body .color3 #system_management .main .content .list .item .button .delete {
   color: #db5f41;
-}
-body .color3 #system_management .main .content .form_items .single_question {
-  background: rgba(251, 201, 92, 0.5);
 }
 body .color3 #system_management .main .content .list .setting_item {
   color: rgba(0, 0, 0, 0.5);
@@ -3334,6 +4426,38 @@ body .color4 #home_management .item .des {
 body .color4 #home_management .item .negative {
   color: #db5f41;
 }
+body .color4 #tracking_management #bg .left {
+  background: #5E6579;
+}
+body .color4 #tracking_management #bg .right {
+  background: #7A7671;
+}
+body .color4 #tracking_management .main {
+  background: rgb(255, 255, 255);
+}
+body .color4 #tracking_management .main .header .title {
+  color: rgba(62, 63, 66, 0.75);
+}
+body .color4 #tracking_management .main .header label,
+body .color4 #tracking_management .main .header .date {
+  background: rgba(62, 63, 66, 0.75);
+  color: rgba(255, 255, 255, 0.9);
+}
+body .color4 #tracking_management .main .calendar .calendar_head .item {
+  background: rgba(62, 63, 66, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+}
+body .color4 #tracking_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(62, 63, 66, 0.15);
+}
+body .color4 #tracking_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(62, 63, 66, 0.3);
+}
+body .color4 #tracking_management .main .content .item input,
+body .color4 #tracking_management .main .content .item select {
+  border: 1px solid rgb(62, 63, 66);
+  background: rgba(62, 63, 66, 0.2);
+}
 body .color4 #chicken_management #bg .left {
   background: #5E6579;
 }
@@ -3430,25 +4554,28 @@ body .color4 #report_management #bg .right {
 body .color4 #report_management .main {
   background: rgb(255, 255, 255);
 }
-body .color4 #report_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color4 #report_management .main .header .title {
+  color: rgba(62, 63, 66, 0.75);
+}
+body .color4 #report_management .main .header label,
+body .color4 #report_management .main .header .date {
   background: rgba(62, 63, 66, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color4 #report_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(255, 211, 127, 0.5);
+body .color4 #report_management .main .calendar .calendar_head .item {
+  background: rgba(62, 63, 66, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color4 #report_management .main .content .item .des {
-  color: rgb(62, 63, 66);
+body .color4 #report_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(62, 63, 66, 0.15);
+}
+body .color4 #report_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(62, 63, 66, 0.3);
 }
 body .color4 #report_management .main .content .item input,
 body .color4 #report_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color4 #report_management .main .content .item fieldset label {
-  color: rgba(62, 63, 66, 0.3);
-}
-body .color4 #report_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(62, 63, 66);
+  background: rgba(62, 63, 66, 0.2);
 }
 body .color4 #report_management .main .title a {
   color: rgb(255, 255, 255);
@@ -3461,6 +4588,22 @@ body .color4 #report_management .main .summary .item .name {
 }
 body .color4 #report_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color4 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(62, 63, 66, 0.4);
+}
+body .color4 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(62, 63, 66, 0.7);
+}
+body .color4 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(255, 211, 127, 0.7);
+}
+body .color4 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color4 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(255, 211, 127, 0.5);
+}
+body .color4 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(255, 211, 127);
 }
 body .color4 #report_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -3490,9 +4633,6 @@ body .color4 #report_management .main .content .list .item .button .edit {
 body .color4 #report_management .main .content .list .item .button .delete {
   color: #db5f41;
 }
-body .color4 #report_management .main .content .form_items .single_question {
-  background: rgba(255, 211, 127, 0.5);
-}
 body .color4 #system_management #bg .left {
   background: #5E6579;
 }
@@ -3502,25 +4642,28 @@ body .color4 #system_management #bg .right {
 body .color4 #system_management .main {
   background: rgb(255, 255, 255);
 }
-body .color4 #system_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color4 #system_management .main .header .title {
+  color: rgba(62, 63, 66, 0.75);
+}
+body .color4 #system_management .main .header label,
+body .color4 #system_management .main .header .date {
   background: rgba(62, 63, 66, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color4 #system_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(255, 211, 127, 0.5);
+body .color4 #system_management .main .calendar .calendar_head .item {
+  background: rgba(62, 63, 66, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color4 #system_management .main .content .item .des {
-  color: rgb(62, 63, 66);
+body .color4 #system_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(62, 63, 66, 0.15);
+}
+body .color4 #system_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(62, 63, 66, 0.3);
 }
 body .color4 #system_management .main .content .item input,
 body .color4 #system_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color4 #system_management .main .content .item fieldset label {
-  color: rgba(62, 63, 66, 0.3);
-}
-body .color4 #system_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(62, 63, 66);
+  background: rgba(62, 63, 66, 0.2);
 }
 body .color4 #system_management .main .title a {
   color: rgb(255, 255, 255);
@@ -3533,6 +4676,22 @@ body .color4 #system_management .main .summary .item .name {
 }
 body .color4 #system_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color4 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(62, 63, 66, 0.4);
+}
+body .color4 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(62, 63, 66, 0.7);
+}
+body .color4 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(255, 211, 127, 0.7);
+}
+body .color4 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color4 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(255, 211, 127, 0.5);
+}
+body .color4 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(255, 211, 127);
 }
 body .color4 #system_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -3561,9 +4720,6 @@ body .color4 #system_management .main .content .list .item .button .edit {
 }
 body .color4 #system_management .main .content .list .item .button .delete {
   color: #db5f41;
-}
-body .color4 #system_management .main .content .form_items .single_question {
-  background: rgba(255, 211, 127, 0.5);
 }
 body .color4 #system_management .main .content .list .setting_item {
   color: rgba(0, 0, 0, 0.5);
@@ -3661,6 +4817,38 @@ body .color5 #home_management .item .des {
 body .color5 #home_management .item .negative {
   color: #db5f41;
 }
+body .color5 #tracking_management #bg .left {
+  background: #384C9D;
+}
+body .color5 #tracking_management #bg .right {
+  background: #3468CC;
+}
+body .color5 #tracking_management .main {
+  background: rgb(255, 255, 255);
+}
+body .color5 #tracking_management .main .header .title {
+  color: rgba(38, 115, 184, 0.75);
+}
+body .color5 #tracking_management .main .header label,
+body .color5 #tracking_management .main .header .date {
+  background: rgba(38, 115, 184, 0.75);
+  color: rgba(255, 255, 255, 0.9);
+}
+body .color5 #tracking_management .main .calendar .calendar_head .item {
+  background: rgba(38, 115, 184, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+}
+body .color5 #tracking_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(38, 115, 184, 0.15);
+}
+body .color5 #tracking_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(38, 115, 184, 0.3);
+}
+body .color5 #tracking_management .main .content .item input,
+body .color5 #tracking_management .main .content .item select {
+  border: 1px solid rgb(38, 115, 184);
+  background: rgba(62, 63, 66, 0.2);
+}
 body .color5 #chicken_management #bg .left {
   background: #384C9D;
 }
@@ -3757,25 +4945,28 @@ body .color5 #report_management #bg .right {
 body .color5 #report_management .main {
   background: rgb(255, 255, 255);
 }
-body .color5 #report_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color5 #report_management .main .header .title {
+  color: rgba(38, 115, 184, 0.75);
+}
+body .color5 #report_management .main .header label,
+body .color5 #report_management .main .header .date {
   background: rgba(38, 115, 184, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color5 #report_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(244, 181, 65, 0.5);
+body .color5 #report_management .main .calendar .calendar_head .item {
+  background: rgba(38, 115, 184, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color5 #report_management .main .content .item .des {
-  color: rgb(38, 115, 184);
+body .color5 #report_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(38, 115, 184, 0.15);
+}
+body .color5 #report_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(38, 115, 184, 0.3);
 }
 body .color5 #report_management .main .content .item input,
 body .color5 #report_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color5 #report_management .main .content .item fieldset label {
-  color: rgba(38, 115, 184, 0.3);
-}
-body .color5 #report_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(38, 115, 184);
+  background: rgba(62, 63, 66, 0.2);
 }
 body .color5 #report_management .main .title a {
   color: rgb(255, 255, 255);
@@ -3788,6 +4979,22 @@ body .color5 #report_management .main .summary .item .name {
 }
 body .color5 #report_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color5 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(38, 115, 184, 0.4);
+}
+body .color5 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(38, 115, 184, 0.7);
+}
+body .color5 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(244, 181, 65, 0.7);
+}
+body .color5 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color5 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(244, 181, 65, 0.5);
+}
+body .color5 #report_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(244, 181, 65);
 }
 body .color5 #report_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -3817,9 +5024,6 @@ body .color5 #report_management .main .content .list .item .button .edit {
 body .color5 #report_management .main .content .list .item .button .delete {
   color: #db5f41;
 }
-body .color5 #report_management .main .content .form_items .single_question {
-  background: rgba(244, 181, 65, 0.5);
-}
 body .color5 #system_management #bg .left {
   background: #384C9D;
 }
@@ -3829,25 +5033,28 @@ body .color5 #system_management #bg .right {
 body .color5 #system_management .main {
   background: rgb(255, 255, 255);
 }
-body .color5 #system_management .main .title {
-  color: rgba(255, 255, 255, 0.9);
+body .color5 #system_management .main .header .title {
+  color: rgba(38, 115, 184, 0.75);
+}
+body .color5 #system_management .main .header label,
+body .color5 #system_management .main .header .date {
   background: rgba(38, 115, 184, 0.75);
+  color: rgba(255, 255, 255, 0.9);
 }
-body .color5 #system_management .main .content .item:nth-child(even of :not(.hide)) {
-  background: rgba(244, 181, 65, 0.5);
+body .color5 #system_management .main .calendar .calendar_head .item {
+  background: rgba(38, 115, 184, 0.75);
+  color: rgba(255, 255, 255, 0.8);
 }
-body .color5 #system_management .main .content .item .des {
-  color: rgb(38, 115, 184);
+body .color5 #system_management .main .calendar .calendar_body .calendar_row .item {
+  background: rgba(38, 115, 184, 0.15);
+}
+body .color5 #system_management .main .calendar .calendar_body .calendar_row .active_item:hover {
+  background: rgba(38, 115, 184, 0.3);
 }
 body .color5 #system_management .main .content .item input,
 body .color5 #system_management .main .content .item select {
-  color: rgba(0, 0, 0, 0.5);
-}
-body .color5 #system_management .main .content .item fieldset label {
-  color: rgba(38, 115, 184, 0.3);
-}
-body .color5 #system_management .main .content .item fieldset .input:checked + label {
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(38, 115, 184);
+  background: rgba(62, 63, 66, 0.2);
 }
 body .color5 #system_management .main .title a {
   color: rgb(255, 255, 255);
@@ -3860,6 +5067,22 @@ body .color5 #system_management .main .summary .item .name {
 }
 body .color5 #system_management .main .summary .item .negative {
   color: #db5f41;
+}
+body .color5 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_income {
+  background: rgba(38, 115, 184, 0.4);
+}
+body .color5 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_expense {
+  background: rgba(38, 115, 184, 0.7);
+}
+body .color5 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_row .item_dots .has_remark {
+  background: rgba(244, 181, 65, 0.7);
+}
+body .color5 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_income,
+body .color5 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_chicken {
+  background: rgba(244, 181, 65, 0.5);
+}
+body .color5 #system_management .main .report_calendar .calendar_body .calendar_row .item .item_tags .has_expense {
+  background: rgb(244, 181, 65);
 }
 body .color5 #system_management .main .content #title {
   color: rgba(255, 255, 255, 0.9);
@@ -3888,9 +5111,6 @@ body .color5 #system_management .main .content .list .item .button .edit {
 }
 body .color5 #system_management .main .content .list .item .button .delete {
   color: #db5f41;
-}
-body .color5 #system_management .main .content .form_items .single_question {
-  background: rgba(244, 181, 65, 0.5);
 }
 body .color5 #system_management .main .content .list .setting_item {
   color: rgba(0, 0, 0, 0.5);

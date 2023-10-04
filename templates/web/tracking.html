@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+{% load static common mathfilters %}
+
+{% block css %}
+  <link href="{% static "vendor/jquery-ui-1.13.2/jquery-ui.min.css" %} " rel="stylesheet" type="text/css" />
+  <link href="{% static "vendor/jquery-ui-month-picker-3.0.4/css/MonthPicker.css" %}" rel="stylesheet" type="text/css" />
+{% endblock  %}
+
+{% block content %}
+  <div id="tracking_management" data-url="{% url "web:tracking" %}">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <div class="main">
+          <div class="header">
+              <div class="title">請選擇要記帳的日期</div>
+              <label for="chosen_month" id="month_choose_label">{{ today|date:'Y-m' }}</label>
+              <input type="text" id="chosen_month" hidden>
+          </div>
+          <div class="calendar tracking_calendar">
+              <div class="calendar_head">
+              {% for i in calendar_head %}
+                  <div class="item">{{ i }}</div>
+              {% endfor %}
+              </div>
+              <div class="calendar_body">
+              {% for i in 6|times %}
+                <div class="calendar_row">
+                {% for j in 7|times %}
+                    <div class="item" id="calendar_cell_{{ i|mul:7|add:j }}">
+                        <div class="item_text"></div>
+                    </div>
+                {% endfor %}
+                </div>
+              {% endfor %}
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static "vendor/jquery-ui-1.13.2/jquery-ui.min.js" %}"></script>
+  <script src="{% static "vendor/jquery-ui-month-picker-3.0.4/js/MonthPicker.js" %}"></script>
+  <script src="{% static 'js/form.js' %}"></script>
+  <script src="{% static 'js/calendar.js' %}"></script>
+{% endblock %}

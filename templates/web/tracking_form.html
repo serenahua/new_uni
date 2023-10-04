@@ -1,0 +1,126 @@
+{% extends 'common/base.html' %}
+{% load static common %}
+
+{% block css %}
+  <link href="{% static "vendor/jquery-ui-1.13.2/jquery-ui.min.css" %} " rel="stylesheet" type="text/css" />
+{% endblock  %}
+
+{% block content %}
+  <div id="tracking_management">
+      <div id="bg">
+          <div class="left"></div>
+          <div class="right"></div>
+      </div>
+      <form action="{% url 'web:tracking_form' %}" class="main">
+          {% csrf_token %}
+          <div class="header">
+              <div></div>
+              <label for="datepicker" class="date" id="datepicker_label">{{ date|date_with_day }}</label>
+          </div>
+
+          {% if item is None %}
+          <input type="text" name="date" id="datepicker" value="{{ date }}" hidden>
+          <input type="hidden" name="method" value="create">
+          {% else %}
+          <input type="text" name="date" id="datepicker" value="{{ date|date:'Y-m-d' }}" hidden>
+          <input type="hidden" name="method" value="edit">
+          <input type="hidden" name="id" value="{{ item.id }}">
+          <input type="hidden" name="type" value="{{ item.classname }}">
+          <input type="hidden" name="item_name" value="{{ item.category }}">
+          {% endif %}
+
+          <div class="content">
+              <div class="item">
+                  <fieldset>
+                      <input type="radio" name="item_name" id="select_chicken" value="chicken" class="input" {% if item is None or item.category == 'chicken' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="select_chicken">{% if item is None or item.category == 'chicken' %}<i class='fa-solid fa-check'></i>{% endif %}馥香雞</label>
+                  </fieldset>
+                  <fieldset>
+                      <input type="radio" name="item_name" id="select_hot_pot" value="hot_pot" class="input" {% if item.category == 'hot_pot' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="select_hot_pot">{% if item.category == 'hot_pot' %}<i class='fa-solid fa-check'></i>{% endif %}日料</label>
+                  </fieldset>
+                  <fieldset>
+                      <input type="radio" name="item_name" id="select_house" value="house" class="input" {% if item.category == 'home' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="select_house">{% if item.category == 'home' %}<i class='fa-solid fa-check'></i>{% endif %}家庭</label>
+                  </fieldset>
+              </div>
+              <div class="item">
+                  <fieldset>
+                      <input type="radio" name="type" id="income" value="income" class="input" {% if item is None or item.classname == 'income' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="income">{% if item is None or item.classname == 'income' %}<i class='fa-solid fa-check'></i>{% endif %}收入</label>
+                  </fieldset>
+                  <fieldset>
+                      <input type="radio" name="type" id="expense" value="expense" class="input" {% if item.classname == 'expense' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
+                      <label for="expense">{% if item.classname == 'expense' %}<i class='fa-solid fa-check'></i>{% endif %}支出</label>
+                  </fieldset>
+              </div>
+              <div class="item expense_item {% if item is None or item.classname == 'income' %}hide{% endif %}">
+                  <select id="category" name="category">
+                      <option value="" disabled selected>請選擇項目</option>
+                      {% if item is None %}
+                      {% for i in expense_items.chicken %}
+                      <option value="{{ i.id }}">{{ i.name }}</option>
+                      {% endfor %}
+                      {% elif item.category == 'chicken' %}
+                      {% for i in expense_items.chicken %}
+                      <option value="{{ i.id }}" {% if item.item.id == i.id %}selected{% endif %}>{{ i.name }}</option>
+                      {% endfor %}
+                      {% elif item.category == 'hot_pot' %}
+                      {% for i in expense_items.hotpot %}
+                      <option value="{{ i.id }}" {% if item.item.id == i.id %}selected{% endif %}>{{ i.name }}</option>
+                      {% endfor %}
+                      {% elif item.category == 'home' %}
+                      {% for i in expense_items.house %}
+                      <option value="{{ i.id }}" {% if item.item.id == i.id %}selected{% endif %}>{{ i.name }}</option>
+                      {% endfor %}
+                      {% endif %}
+                  </select>
+              </div>
+              <div class="item chicken_income_item {% if item.classname == 'expense' %}hide{% elif item is not None and item.category != 'chicken' %}hide{% endif %}">
+                  <input type="number" name="chicken" id="chicken" class="item_required {% if item is None %}required{% elif item.classname == 'income' and item.category == 'chicken' %}required{% endif %}" value="{{ item.volume }}" placeholder="請填寫雞隻數" pattern="\d*" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+              </div>
+              <div class="item">
+                  <input type="number" name="value" id="value" class="required" value="{{ item.value }}" placeholder="請填寫金額" pattern="\d*" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+              </div>
+              <div class="item">
+                  <input type="text" name="remark" id="remark" value="{{ item.remark }}" placeholder="備註">
+              </div>
+          </div>
+          <div class="btn_group">
+              {% if item is not None %}
+                  <button class="cancel_btn btn" data-url="{% url 'web:report' %}?date={{ item.date|date:'Y-m-d' }}&t=d&tab={{ tab }}" title="返回上一頁"><img src="{% static 'images/cancel.png' %}"></button>
+              {% else %}
+                  <button class="cancel_btn btn" title="取消並返回首頁" data-url="{% url 'web:index' %}"><img src="{% static 'images/cancel.png' %}"></button>
+              {% endif %}
+              {% if item is None %}
+              <button class="continue_btn btn" title="送出並繼續新增"><img src="{% static 'images/continue.png' %}"></button>
+              {% endif %}
+              <button class="submit_btn btn" title="送出"><img src="{% static 'images/ok.png' %}"></button>
+          </div>
+      </form>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static "vendor/jquery-ui-1.13.2/jquery-ui.min.js" %}"></script>
+  <script type="text/javascript">
+      $('#datepicker').datepicker({
+        dateFormat : "yy-mm-dd",
+        defaultDate: "{{ date|date:'Y-m-d' }}",
+        onSelect: function() {
+          let date = $(this).val();
+          let weekdays = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+          let day = new Date(date).getDay();
+
+          $('#datepicker_label').text(`${date} ${weekdays[day]}`);
+        }
+      });
+
+      $('#datepicker_label').click(function() {
+        $('#datepicker').show().focus().hide();
+      });
+
+      var received_data  = "{{ expense_items|safe }}";
+  </script>
+  <script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

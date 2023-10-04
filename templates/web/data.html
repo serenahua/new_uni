@@ -32,35 +32,26 @@
 
               <div class="form_items">
                   {% if cat == '4' %}
-                  <div class="item single_question">
-                      <label for="name" class="des">名稱:</label>
-                      <input type="text" name="name" id="name" value="{{ item.value }}" class="required">
+                  <div class="item">
+                      <input type="text" name="name" id="name" placeholder="請填寫名稱" value="{{ item.value }}" class="required">
                   </div>
                   {% else %}
                   <div class="item">
-                      <div class="des">類別:</div>
-                      {% if item is None or item.chicken %}
                       <fieldset>
                           <input type="radio" name="type" id="type_chicken" value="chicken" class="input" {% if cat == '1' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
-                          <label for="type_chicken">{% if item is None and cat == '1' %}<i class='fa-solid fa-check'></i>{% endif %}馥香雞</label>
+                          <label for="type_chicken">{% if item is None and cat == '1' %}<i class='fa-solid fa-check'></i>{% elif item.chicken %}<i class='fa-solid fa-check'></i>{% endif %}馥香雞</label>
                       </fieldset>
-                      {% endif %}
-                      {% if item is None or item.hot_pot %}
                       <fieldset>
                           <input type="radio" name="type" id="type_hotpot" value="hotpot" class="input" {% if item.hot_pot or cat == '2' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
-                          <label for="type_hotpot">{% if item is None and cat == '2' %}<i class='fa-solid fa-check'></i>{% endif %}日料</label>
+                          <label for="type_hotpot">{% if item is None and cat == '2' %}<i class='fa-solid fa-check'></i>{% elif item.hot_pot %}<i class='fa-solid fa-check'></i>{% endif %}日料</label>
                       </fieldset>
-                      {% endif %}
-                      {% if item is None or item.home %}
                       <fieldset>
                           <input type="radio" name="type" id="type_home" value="home" class="input" {% if item.home or cat == '3' %}checked{% endif %} {% if item is not None %}disabled{% endif %} />
-                          <label for="type_home">{% if item is None and cat == '3' %}<i class='fa-solid fa-check'></i>{% endif %}家庭</label>
+                          <label for="type_home">{% if item is None and cat == '3' %}<i class='fa-solid fa-check'></i>{% elif item.home %}<i class='fa-solid fa-check'></i>{% endif %}家庭</label>
                       </fieldset>
-                      {% endif %}
                   </div>
                   <div class="item">
-                      <label for="name" class="des">名稱:</label>
-                      <input type="text" name="name" id="name" value="{{ item.name }}" class="required">
+                      <input type="text" name="name" placeholder="請填寫名稱" id="name" value="{{ item.name }}" class="required">
                   </div>
                   {% endif %}
               </div>

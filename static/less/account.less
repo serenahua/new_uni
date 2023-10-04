@@ -5,13 +5,21 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+
+    a {
+      color: @fontColor;
+      .link-default;
+    }
 
     #wrapper {
         position: absolute;
         width: 100%;
-        height: 100%;
+        min-height: 100%;
         top: 0;
         left: 0;
 
@@ -94,15 +102,14 @@ body {
 
         #nav {
             .flexbox(row, center, center);
-            width: max-content;
-            margin: 64px auto 0;
-            gap: 30px;
+            width: 1220px;
+            margin: 32px auto 0;
+            gap: 25px;
 
             .block {
-                .flexbox(row, center, center);
-                padding: 20px 40px;
+                .flexbox(row, center, space-between);
+                padding: 8px 30px;
                 border-radius: 20px;
-                gap: 40px;
 
                 .item {
                     .flexbox(row, center, center);
@@ -110,20 +117,26 @@ body {
                     font-size:24px;
                     text-decoration: none;
                     outline: none;
-                    padding: 8px 20px;
+                    padding: 5px 20px;
 
                     &:hover {
                         opacity: .8;
                     }
 
+                    .img {
+                        .flexbox(row, center, center);
+                        width:40px;
+                        height:40px;
+                    }
+
                     .icon {
-                        font-size: 32px;
+                        font-size: 28px;
                     }
                 }
 
                 .active {
                     font-weight: bold;
-                    border-radius: 50px;
+                    border-radius: 20px;
 
                     &:hover {
                         opacity: 1;
@@ -131,12 +144,12 @@ body {
                 }
 
                 &:nth-child(2) {
-                    padding: 20px 10px;
-
-                    &:hover {
-                        opacity: .8;
-                    }
+                    padding: 10px 10px;
                 }
+            }
+
+            .main {
+                flex: 1;
             }
         }
 
@@ -223,7 +236,7 @@ body {
         #home_management {
             .flexbox(row, flex-start, flex-start);
             flex-wrap: wrap;
-            width: 80%;
+            width: 1220px;
             margin: auto;
             margin-top: 87px;
             gap: 12px;
@@ -252,6 +265,251 @@ body {
                     .value {
                         margin-top: 0;
                         font-size: 84px;
+                    }
+                }
+            }
+        }
+
+        #tracking_management {
+            position: relative;
+            width: 1220px;
+            height: 626px;
+            margin: 35px auto 0;
+            box-sizing: border-box;
+
+            #bg {
+                .flexbox(row, center, center);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+
+                .left,
+                .right {
+                    width: 50%;
+                    height: 100%;
+                    border-radius: 20px;
+                }
+            }
+
+            .main {
+                position: absolute;
+                left: 90px;
+                width: calc(100% - 180px);
+                height: 100%;
+                margin: auto;
+                z-index: 2;
+
+                #datepicker {
+                    position: absolute;
+                    right: 155px;
+                    top: 40px;
+                }
+
+                .header {
+                    width: 996px;
+                    margin: 21px auto 0;
+                    .flexbox(row, center, space-between);
+
+                    .title {
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin: 3px 0 0 3px;
+                    }
+
+                    label {
+                      font-weight: bold;
+                      font-size: 22px;
+                      padding: 5px 30px;
+                      border-radius: 10px;
+                      margin-right: 1px;
+                      cursor: pointer;
+                    }
+
+                    .date {
+                      font-weight: bold;
+                      font-size: 22px;
+                      padding: 5px 30px;
+                      border-radius: 10px;
+                      margin-right: 8px;
+                    }
+                }
+
+                .calendar {
+                    width: 996px;
+                    margin: 10px auto 0;
+
+                    .calendar_head {
+                        .flexbox(row, center, center);
+
+                        .item {
+                            .flexbox(row, center, center);
+                            height:35px;
+                            border: 1px solid rgb(@white);
+                            font-size: 16px;
+                            font-weight: bold;
+                            flex:1;
+                            box-sizing: border-box;
+
+                            &:first-child {
+                                border-radius: 10px 0 0 0;
+                            }
+
+                            &:last-child {
+                                border-radius: 0 10px 0 0;
+                            }
+                        }
+                    }
+
+                    .calendar_body {
+                        width:100%;
+
+                        .calendar_row {
+                            width:100%;
+                            .flexbox(row, center, center);
+
+                            .item {
+                                height: 85px;
+                                border: 1px solid rgb(@white);
+                                flex:1;
+                                box-sizing: border-box;
+
+                                .item_text {
+                                    margin: 10px 0 0 10px;
+                                }
+                            }
+
+                            .active_item {
+                                cursor: pointer;
+
+                                .item_text {
+                                    width: fit-content;
+                                    .flexbox(row, center, center);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .tracking_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .active_item {
+                                &:hover {
+                                    .item_text {
+                                        height: 65px;
+                                        width: calc(100% - 20px);
+                                        font-size: 24px;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    .flexbox(column, flex-start, center);
+                    width: 996px;
+                    margin: auto;
+
+                    .item {
+                        .flexbox(row, center, flex-start);
+                        width: 100%;
+                        padding: 20px 10px;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        gap: 47px;
+                        font-size: 36px;
+
+                        input,
+                        select {
+                            flex: 1;
+                            font-size: 24px;
+                            outline: none;
+                            cursor: pointer;
+                            padding: 15px 24px;
+                            border-radius: 10px;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            font-weight: bold;
+                            appearance: none;
+                            color: rgba(@fontColorDark);
+
+                            &:focus {
+                                cursor: default;
+                            }
+
+                            &::placeholder {
+                                font-weight: normal;
+                                color: rgba(@fontColor);
+                            }
+
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                margin: 0;
+                            }
+
+                            &:valid {
+                                font-weight: bold;
+                            }
+
+                        }
+
+                        fieldset {
+                            width: 150px;
+                            margin: 0 5px;
+                            padding: 0 20px;
+                            border: 0;
+
+                            label {
+                                .flexbox(row, center, flex-start);
+                                gap: 9px;
+                                position: relative;
+                                cursor: pointer;
+                                font-size: 24px;
+                            }
+
+                            .input {
+                                display: none;
+
+                                &:checked + label {
+                                    font-weight: bold;
+                                    color: rgba(@fontColorDark);
+                                }
+                            }
+                        }
+                    }
+
+                    .hide {
+                        display:  none;
+                    }
+                }
+
+                .btn_group {
+                    position: absolute;
+                    .flexbox(column, center, center);
+                    gap: 20px;
+                    right: -74px;
+                    bottom: 26px;
+
+                    .btn {
+                        width: 60px;
+                        padding: 0;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+
+                    a {
+                      &:hover {
+                          opacity: 0.8;
+                      }
                     }
                 }
             }
@@ -399,9 +657,12 @@ body {
         }
 
         #report_management {
-            #chicken_management;
-            height: 574px;
-            margin: 20px auto 0;
+            #tracking_management;
+            position: relative;
+            width: 1220px;
+            height: 626px;
+            margin: 35px auto 0;
+            box-sizing: border-box;
 
             .main {
                 .tabs {
@@ -413,11 +674,14 @@ body {
 
                     .item {
                         img {
+                            opacity: 0.6;
                             width: 60px;
                         }
 
                         &:hover {
-                            opacity: 0.9 !important;
+                            img {
+                                opacity: 0.9 !important;
+                            }
                         }
                     }
 
@@ -428,20 +692,24 @@ body {
                         }
 
                         &:hover {
-                            opacity:1 !important;
+                            img {
+                                opacity:1 !important;
+                            }
                         }
                     }
                 }
 
-                .title {
-                    .flexbox(row, center, space-between);
+                .header {
+                    .date {
+                        margin-right:0;
+                    }
                 }
 
                 .summary {
                     .flexbox(row, center, space-between);
-                    width: calc(100% - 64px);
+                    width: 996px;
                     height: 91px;
-                    margin: 5px auto 0;
+                    margin: 8px auto 0;
                     padding: 10px 75px;
                     border-radius: 10px;
                     box-sizing: border-box;
@@ -449,6 +717,7 @@ body {
                     .item {
                         .flexbox(column, flex-start, flex-start);
                         gap: 2px;
+                        min-width: 120px;
 
                         .name {
                             font-size: 20px;
@@ -462,13 +731,62 @@ body {
                     }
                 }
 
+                .report_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                .item_row {
+                                    .flex;
+                                    gap: 10px;
+
+                                    .item_text {
+                                        margin-top: 0;
+                                    }
+
+                                    .item_dots {
+                                        .flexbox(row, flex-end, center);
+                                        height: 13px;
+                                        margin-top: 5px;
+                                        gap: 5px;
+
+                                        .dot {
+                                            width: 13px;
+                                            height: 13px;
+                                            border-radius: 100px;
+                                        }
+                                    }
+                                }
+
+                                .item_tags {
+                                    .flexbox(column, flex-end, flex-end);
+                                    font-size: 14px;
+                                    height: 61px;
+                                    gap: 2px;
+
+                                    .tag {
+                                        padding: 3px;
+                                        width: 100%;
+                                        box-sizing: border-box;
+                                        text-align: right;
+                                    }
+                                }
+
+                                .hide {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 .content {
-                    width: calc(100% - 64px);
+                    width: 996px;
                     margin: 20px auto 0;
 
                     #title {
                         .flexbox(row, center, center);
-                        width: 100%;
+                        width: 976px;
+                        margin: auto;
                         font-size: 36px;
                         font-weight: bold;
                         border-radius: 10px;
@@ -476,8 +794,9 @@ body {
 
                     .list {
                         .flexbox(column, flex-start, flex-start);
-                        height: 370px;
-                        width: 100%;
+                        height: 430px;
+                        width: 976px;
+                        margin: auto;
                         gap: 5px;
                         overflow: hidden;
                         overflow-y: auto;
@@ -520,17 +839,24 @@ body {
                                 gap: 5px;
 
                                 span {
-                                    min-width: 60px;
+                                    min-width: 90px;
                                     text-align: right;
                                 }
                             }
 
                             .name {
-                                width: 100px;
+                                width: 127px;
                             }
 
                             .category {
-                                width: 350px;
+                                width: 220px;
+                            }
+
+                            .remark {
+                                width: 330px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
                             }
 
                             .button {
@@ -546,18 +872,12 @@ body {
                     }
 
                     .form_items {
-                        padding: 0 40px;
                         box-sizing: border-box;
-                        margin-top: 57px;
+                        margin-top: 17px;
                         height: 200px;
                         width: 100%;
                     }
                 }
-            }
-
-            &.form_style {
-                height: 525px;
-                margin: 53px auto 0;
             }
         }
 
@@ -565,20 +885,12 @@ body {
             #report_management;
 
             .main {
-                .tabs {
-                    .item {
-                        img {
-                            opacity: 0.7;
-                        }
-                    }
-                }
-
                 .content {
                     margin: 25px auto 0;
 
                     .list {
                         margin-top: 32px;
-                        height: 435px;
+                        height: 490px;
 
                         .item {
                             gap: 20px;
@@ -644,7 +956,6 @@ body {
                         }
                     }
                 }
-
             }
         }
     }
@@ -770,6 +1081,68 @@ body {
             }
         }
 
+        #tracking_management {
+            #bg {
+                .left {
+                    background: @color1_l;
+                }
+
+                .right {
+                    background: @color1_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .header {
+                    .title {
+                        color: rgba(@mainGreen, .75);
+                    }
+
+                    label,
+                    .date {
+                        background: rgba(@mainGreen, .75);
+                        color: rgba(@white, .9);
+                    }
+                }
+
+                .calendar {
+                    .calendar_head {
+                        .item {
+                            background: rgba(@mainGreen, .75);
+                            color: rgba(@white, .8);
+                        }
+                    }
+
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                background: rgba(@mainGreen, .15);
+                            }
+
+                            .active_item {
+                                &:hover {
+                                    background: rgba(@mainGreen, .3);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    .item {
+                        input,
+                        select {
+                            border: 1px solid rgb(@mainGreen);
+                            background: rgba(@mainGreen, .2);
+
+                        }
+                    }
+                }
+            }
+        }
+
         #chicken_management {
             #bg {
                 .left {
@@ -829,7 +1202,7 @@ body {
         }
 
         #report_management {
-            #chicken_management;
+            #tracking_management;
 
             .main {
                 .title {
@@ -848,6 +1221,41 @@ body {
 
                         .negative {
                             color: @red;
+                        }
+                    }
+                }
+
+                .report_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                .item_row {
+                                    .item_dots {
+                                        .has_income {
+                                            background: rgba(@mainGreen, .4);
+                                        }
+
+                                        .has_expense {
+                                            background: rgba(@mainGreen, .7);
+                                        }
+
+                                        .has_remark {
+                                            background: rgba(@mainYellow1, .7);
+                                        }
+                                    }
+                                }
+
+                                .item_tags {
+                                    .has_income,
+                                    .has_chicken {
+                                        background: rgba(@mainYellow1, .5);
+                                    }
+
+                                    .has_expense {
+                                        background: rgb(@mainYellow1);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -898,12 +1306,6 @@ body {
                                     color: rgb(@red);
                                 }
                             }
-                        }
-                    }
-
-                    .form_items {
-                        .single_question {
-                            background: rgba(@mainYellow1, .5);
                         }
                     }
                 }
@@ -1058,6 +1460,68 @@ body {
             }
         }
 
+        #tracking_management {
+            #bg {
+                .left {
+                    background: @color2_l;
+                }
+
+                .right {
+                    background: @color2_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .header {
+                    .title {
+                        color: rgba(@mainPurple, .75);
+                    }
+
+                    label,
+                    .date {
+                        background: rgba(@mainPurple, .75);
+                        color: rgba(@white, .9);
+                    }
+                }
+
+                .calendar {
+                    .calendar_head {
+                        .item {
+                            background: rgba(@mainPurple, .75);
+                            color: rgba(@white, .8);
+                        }
+                    }
+
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                background: rgba(@mainPurple, .15);
+                            }
+
+                            .active_item {
+                                &:hover {
+                                    background: rgba(@mainPurple, .3);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    .item {
+                        input,
+                        select {
+                            border: 1px solid rgb(@mainPurple);
+                            background: rgba(@mainPurple, .2);
+
+                        }
+                    }
+                }
+            }
+        }
+
         #chicken_management {
             #bg {
                 .left {
@@ -1117,7 +1581,7 @@ body {
         }
 
         #report_management {
-            #chicken_management;
+            #tracking_management;
 
             .main {
                 .title {
@@ -1136,6 +1600,41 @@ body {
 
                         .negative {
                             color: @red;
+                        }
+                    }
+                }
+
+                .report_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                .item_row {
+                                    .item_dots {
+                                        .has_income {
+                                            background: rgba(@mainPurple, .4);
+                                        }
+
+                                        .has_expense {
+                                            background: rgba(@mainPurple, .7);
+                                        }
+
+                                        .has_remark {
+                                            background: rgba(@mainYellow2, .7);
+                                        }
+                                    }
+                                }
+
+                                .item_tags {
+                                    .has_income,
+                                    .has_chicken {
+                                        background: rgba(@mainYellow2, .5);
+                                    }
+
+                                    .has_expense {
+                                        background: rgb(@mainYellow2);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1186,12 +1685,6 @@ body {
                                     color: rgb(@red);
                                 }
                             }
-                        }
-                    }
-
-                    .form_items {
-                        .single_question {
-                            background: rgba(@mainYellow2, .5);
                         }
                     }
                 }
@@ -1346,6 +1839,67 @@ body {
             }
         }
 
+        #tracking_management {
+            #bg {
+                .left {
+                    background: @color3_l;
+                }
+
+                .right {
+                    background: @color3_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .header {
+                    .title {
+                        color: rgba(@mainBrown, .75);
+                    }
+
+                    label,
+                    .date {
+                        background: rgba(@mainBrown, .75);
+                        color: rgba(@white, .9);
+                    }
+                }
+
+                .calendar {
+                    .calendar_head {
+                        .item {
+                            background: rgba(@mainBrown, .75);
+                            color: rgba(@white, .8);
+                        }
+                    }
+
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                background: rgba(@mainBrown, .15);
+                            }
+
+                            .active_item {
+                                &:hover {
+                                    background: rgba(@mainBrown, .3);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    .item {
+                        input,
+                        select {
+                            border: 1px solid rgb(@mainBrown);
+                            background: rgba(@mainBrown, .2);
+                        }
+                    }
+                }
+            }
+        }
+
         #chicken_management {
             #bg {
                 .left {
@@ -1405,7 +1959,7 @@ body {
         }
 
         #report_management {
-            #chicken_management;
+            #tracking_management;
 
             .main {
                 .title {
@@ -1424,6 +1978,41 @@ body {
 
                         .negative {
                             color: @red;
+                        }
+                    }
+                }
+
+                .report_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                .item_row {
+                                    .item_dots {
+                                        .has_income {
+                                            background: rgba(@mainBrown, .4);
+                                        }
+
+                                        .has_expense {
+                                            background: rgba(@mainBrown, .7);
+                                        }
+
+                                        .has_remark {
+                                            background: rgba(@mainYellow3, .7);
+                                        }
+                                    }
+                                }
+
+                                .item_tags {
+                                    .has_income,
+                                    .has_chicken {
+                                        background: rgba(@mainYellow3, .5);
+                                    }
+
+                                    .has_expense {
+                                        background: rgb(@mainYellow3);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1474,12 +2063,6 @@ body {
                                     color: rgb(@red);
                                 }
                             }
-                        }
-                    }
-
-                    .form_items {
-                        .single_question {
-                            background: rgba(@mainYellow3, .5);
                         }
                     }
                 }
@@ -1634,6 +2217,67 @@ body {
             }
         }
 
+        #tracking_management {
+            #bg {
+                .left {
+                    background: @color4_l;
+                }
+
+                .right {
+                    background: @color4_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .header {
+                    .title {
+                        color: rgba(@mainGrey, .75);
+                    }
+
+                    label,
+                    .date {
+                        background: rgba(@mainGrey, .75);
+                        color: rgba(@white, .9);
+                    }
+                }
+
+                .calendar {
+                    .calendar_head {
+                        .item {
+                            background: rgba(@mainGrey, .75);
+                            color: rgba(@white, .8);
+                        }
+                    }
+
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                background: rgba(@mainGrey, .15);
+                            }
+
+                            .active_item {
+                                &:hover {
+                                    background: rgba(@mainGrey, .3);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    .item {
+                        input,
+                        select {
+                            border: 1px solid rgb(@mainGrey);
+                            background: rgba(@mainGrey, .2);
+                        }
+                    }
+                }
+            }
+        }
+
         #chicken_management {
             #bg {
                 .left {
@@ -1693,7 +2337,7 @@ body {
         }
 
         #report_management {
-            #chicken_management;
+            #tracking_management;
 
             .main {
                 .title {
@@ -1712,6 +2356,41 @@ body {
 
                         .negative {
                             color: @red;
+                        }
+                    }
+                }
+
+                .report_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                .item_row {
+                                    .item_dots {
+                                        .has_income {
+                                            background: rgba(@mainGrey, .4);
+                                        }
+
+                                        .has_expense {
+                                            background: rgba(@mainGrey, .7);
+                                        }
+
+                                        .has_remark {
+                                            background: rgba(@mainYellow4, .7);
+                                        }
+                                    }
+                                }
+
+                                .item_tags {
+                                    .has_income,
+                                    .has_chicken {
+                                        background: rgba(@mainYellow4, .5);
+                                    }
+
+                                    .has_expense {
+                                        background: rgb(@mainYellow4);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1762,12 +2441,6 @@ body {
                                     color: rgb(@red);
                                 }
                             }
-                        }
-                    }
-
-                    .form_items {
-                        .single_question {
-                            background: rgba(@mainYellow4, .5);
                         }
                     }
                 }
@@ -1922,6 +2595,67 @@ body {
             }
         }
 
+        #tracking_management {
+            #bg {
+                .left {
+                    background: @color5_l;
+                }
+
+                .right {
+                    background: @color5_r;
+                }
+            }
+
+            .main {
+                background: rgb(@white);
+
+                .header {
+                    .title {
+                        color: rgba(@mainBlue, .75);
+                    }
+
+                    label,
+                    .date {
+                        background: rgba(@mainBlue, .75);
+                        color: rgba(@white, .9);
+                    }
+                }
+
+                .calendar {
+                    .calendar_head {
+                        .item {
+                            background: rgba(@mainBlue, .75);
+                            color: rgba(@white, .8);
+                        }
+                    }
+
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                background: rgba(@mainBlue, .15);
+                            }
+
+                            .active_item {
+                                &:hover {
+                                    background: rgba(@mainBlue, .3);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content {
+                    .item {
+                        input,
+                        select {
+                            border: 1px solid rgb(@mainBlue);
+                            background: rgba(@mainGrey, .2);
+                        }
+                    }
+                }
+            }
+        }
+
         #chicken_management {
             #bg {
                 .left {
@@ -1981,7 +2715,7 @@ body {
         }
 
         #report_management {
-            #chicken_management;
+            #tracking_management;
 
             .main {
                 .title {
@@ -2000,6 +2734,41 @@ body {
 
                         .negative {
                             color: @red;
+                        }
+                    }
+                }
+
+                .report_calendar {
+                    .calendar_body {
+                        .calendar_row {
+                            .item {
+                                .item_row {
+                                    .item_dots {
+                                        .has_income {
+                                            background: rgba(@mainBlue, .4);
+                                        }
+
+                                        .has_expense {
+                                            background: rgba(@mainBlue, .7);
+                                        }
+
+                                        .has_remark {
+                                            background: rgba(@mainYellow5, .7);
+                                        }
+                                    }
+                                }
+
+                                .item_tags {
+                                    .has_income,
+                                    .has_chicken {
+                                        background: rgba(@mainYellow5, .5);
+                                    }
+
+                                    .has_expense {
+                                        background: rgb(@mainYellow5);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -2050,12 +2819,6 @@ body {
                                     color: rgb(@red);
                                 }
                             }
-                        }
-                    }
-
-                    .form_items {
-                        .single_question {
-                            background: rgba(@mainYellow5, .5);
                         }
                     }
                 }

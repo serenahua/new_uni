@@ -54,12 +54,68 @@ $(document).ready(function() {
     })
   }
 
-  // 更新標籤
-  function updateLabels(selectedLabel, otherLabel) {
+  // 更新收入/支出標籤
+  function updateTypeLabels(selectedLabel, otherLabel) {
     const selectedLabelTxt = selectedLabel == 'income' ? "收入" : "支出";
     const otherLabelTxt = otherLabel == 'income' ? "收入" : "支出";
     $(`label[for="${selectedLabel}"]`).html(`<i class='fa-solid fa-check'></i>${selectedLabelTxt}`);
     $(`label[for="${otherLabel}"]`).html(otherLabelTxt);
+  }
+
+  // 更新馥香雞/日料/家庭標籤
+  function updateCategoryLabels(selectedLabel) {
+    const types = ['chicken', 'hot_pot', 'house'];
+    const types_text = ['馥香雞', '日料', '家庭'];
+
+    for (var i=0;i<types.length;i++) {
+      if (types[i] == selectedLabel) {
+        $(`label[for="select_${types[i]}"]`).html(`<i class='fa-solid fa-check'></i>${types_text[i]}`);
+      } else {
+        $(`label[for="select_${types[i]}"]`).html(`${types_text[i]}`);
+      }
+    }
+
+    showChickenIncomeItem(selectedLabel);
+  }
+
+  // 更新馥香雞收入選項
+  function showChickenIncomeItem(selectedLabel) {
+    let selectedType = $('input[name="type"]:checked').val();
+    let $chicken_item = $('.chicken_income_item');
+
+    if (selectedLabel == 'chicken' && selectedType == 'income') {
+        toggleItemVisibility($chicken_item, true);
+        toggleItemRequired($chicken_item, true);
+    } else {
+        toggleItemVisibility($chicken_item, false);
+        toggleItemRequired($chicken_item, false);
+    }
+  }
+
+  // 更新不同類別的支出項目選項
+  function switchExpenseOptionsFromCategory(category) {
+    const expenseItems = JSON5.parse(received_data);
+
+    const categoryDropdown = $('#category');
+
+    categoryDropdown.empty();
+    categoryDropdown.append(`<option value="" disabled selected>請選擇項目</option>`)
+
+    let data;
+    switch (category) {
+      case 'chicken':
+        data = expenseItems.chicken;
+        break;
+      case 'hot_pot':
+        data = expenseItems.hotpot;
+        break;
+      default:
+        data = expenseItems.house;
+    }
+
+    for (let item of data) {
+      categoryDropdown.append(`<option value="${item.id}">${item.name}</option>`);
+    }
   }
 
   // 切換項目可見性
@@ -81,23 +137,34 @@ $(document).ready(function() {
   }
 
   // 切換收入/支出類型
-  $('#chicken_management, #hotpot_management').on('click', 'input[name="type"]', function (e) {
+  $('#tracking_management, #chicken_management, #hotpot_management').on('click', 'input[name="type"]', function (e) {
     let selectedType = $(this).val();
+    let selectedLabel = $('input[name="item_name"]:checked').val();
 
     // 根據所選類別切換項目可見性及標籤
     if (selectedType === 'income') {
-      updateLabels('income', 'expense');
-      toggleItemVisibility('.income_item', true);
-      toggleItemRequired('.income_item', true);
+      updateTypeLabels('income', 'expense');
+      if (selectedLabel == 'chicken') {
+          toggleItemVisibility('.chicken_income_item', true);
+          toggleItemRequired('.chicken_income_item', true);
+      }
       toggleItemVisibility('.expense_item', false);
       toggleItemRequired('.expense_item', false);
     } else if (selectedType === 'expense') {
-      updateLabels('expense', 'income');
-      toggleItemVisibility('.income_item', false);
-      toggleItemRequired('.income_item', false);
+      updateTypeLabels('expense', 'income');
+      toggleItemVisibility('.chicken_income_item', false);
+      toggleItemRequired('.chicken_income_item', false);
       toggleItemVisibility('.expense_item', true);
       toggleItemRequired('.expense_item', true);
     }
+  });
+
+  // 切換馥香雞/日料/家庭類別
+  $('#tracking_management').on('click', 'input[name="item_name"]', function (e) {
+    let selectedType = $(this).val();
+
+    updateCategoryLabels(selectedType);
+    switchExpenseOptionsFromCategory(selectedType);
   });
 
   // 切换表單類型
@@ -156,7 +223,14 @@ $(document).ready(function() {
   }
 
   // 送出表單
-  $('#chicken_management, #hotpot_management, #expense_management, #system_management').on('click', '.submit_btn, .continue_btn', handleSubmitButtonClick);
+  $('#tracking_management, #chicken_management, #hotpot_management, #expense_management, #system_management').on('click', '.submit_btn, .continue_btn', handleSubmitButtonClick);
+
+  // 記帳頁面enter送出表單
+  $('#tracking_management').on('keypress', 'form', function(e) {
+    if (e.keyCode === 13) {
+        e.preventDefault();
+    }
+  });
 
   // 刪除按鈕點擊事件處理函數
   function handleDeleteButtonClick(e, confirmMessage, successCallback) {
@@ -185,7 +259,7 @@ $(document).ready(function() {
   });
 
   // 返回
-  $('#chicken_management, #hotpot_management, #expense_management').on('click', '.cancel_btn', function(e) {
+  $('#tracking_management, #chicken_management, #hotpot_management, #expense_management').on('click', '.cancel_btn', function(e) {
     e.preventDefault();
     let url = $(this).data('url');
     window.location.href = url;

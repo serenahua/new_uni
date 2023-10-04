@@ -1,40 +1,93 @@
 {% extends 'common/base.html' %}
 {% load static humanize mathfilters %}
 
+{% block css %}
+  <link href="{% static "vendor/jquery-ui-1.13.2/jquery-ui.min.css" %} " rel="stylesheet" type="text/css" />
+  <link href="{% static "vendor/jquery-ui-month-picker-3.0.4/css/MonthPicker.css" %}" rel="stylesheet" type="text/css" />
+{% endblock  %}
+
 {% block content %}
-  {% comment %} <i class="fas fa-scroll page_icon"></i> {% endcomment %}
-  <div id="report_management">
+  <div id="report_management" data-url="{% url "web:report" %}">
       <div id="bg">
           <div class="left"></div>
           <div class="right"></div>
       </div>
       <div class="main">
-          {% if type == 'd' %}
+          <!-- tab zone -->
           <div class="tabs">
-              <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&t=m" class="item "><img src="{% static 'images/go_back.png' %}"></a>
-          </div>
+          {% if type == 'd' %}
+              <a href="{% url 'web:report' %}?date={{ date|date:'Y-m-d' }}&t=m&tab={{ tab }}" class="item"><img src="{% static 'images/go_back.png' %}"></a>
+          {% else %}
+              <a href="{% url 'web:report' %}?date={{ date|date:'Y-m-d' }}&t=m&tab=0" class="item {% if tab == '0' %}active{% endif %}" title="總報表"><img src="{% static 'images/total.png' %}"></a>
+              <a href="{% url 'web:report' %}?date={{ date|date:'Y-m-d' }}&t=m&tab=1" class="item {% if tab == '1' %}active{% endif %}" title="馥香雞"><img src="{% static 'images/chicken.png' %}"></a>
+              <a href="{% url 'web:report' %}?date={{ date|date:'Y-m-d' }}&t=m&tab=2" class="item {% if tab == '2' %}active{% endif %}" title="日料"><img src="{% static 'images/hot_pot.png' %}"></a>
+              <a href="{% url 'web:report' %}?date={{ date|date:'Y-m-d' }}&t=m&tab=3" class="item {% if tab == '3' %}active{% endif %}" title="家庭"><img src="{% static 'images/house.png' %}"></a>
           {% endif %}
-          <div class="title">
-              {% if type == 'm' %}
-                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&t=m&a=-30" class="prev"><i class="fa-solid fa-chevron-left"></i></a>
-              {% elif type == 'd' %}
-                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&d={{ day }}&&t=d&a=-1" class="prev"><i class="fa-solid fa-chevron-left"></i></a>
+          </div>
+
+          <!-- header zone for calendar choose and summary -->
+          <div class="header">
+          {% if type == 'm' %}
+              {% if tab == '0' or tab == '1' %}
+              <div class="title">本月餘：{{ total|intcomma }}    本月收：{{ income|intcomma }}    本月支：{{ expense|intcomma }}    本月雞：{{ volume|intcomma }}</div>
+              {% else %}
+              <div class="title">本月餘：{{ total|intcomma }}    本月收：{{ income|intcomma }}    本月支：{{ expense|intcomma }}</div>
               {% endif %}
-              <div class="current">
-                {% if type == 'm' %}{{ year }}-{{ month|stringformat:'02d' }}
-                {% else %}{{ year }}-{{ month|stringformat:'02d' }}-{{ day|stringformat:'02d' }}
+              <label for="chosen_month" id="month_choose_label">{{ date|date:'Y-m' }}</label>
+              <input type="text" id="chosen_month" value="{{ date|date:'m/Y'}}" hidden>
+          {% elif type == 'd' %}
+              <div class="title">
+                {% if tab == '0' %}
+                總報表
+                {% elif tab == '1' %}
+                馥香雞
+                {% elif tab == '2' %}
+                日料
+                {% elif tab == '3' %}
+                家庭
                 {% endif %}
               </div>
-              {% if type == 'm' %}
-                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&t=m&a=30" class="next"><i class="fa-solid fa-chevron-right"></i></a>
-              {% elif type == 'd' %}
-                  <a href="{% url 'web:report' %}?y={{ year }}&m={{ month }}&d={{ day }}&t=d&a=1" class="next"><i class="fa-solid fa-chevron-right"></i></a>
-              {% endif %}
+              <div class="date">{{ date|date_with_day }}</div>
+          {% endif %}
           </div>
+
+          <!-- main content -->
+          {% if type == 'm' %}
+          <div class="calendar report_calendar">
+              <div class="calendar_head">
+              {% for i in calendar_head %}
+                  <div class="item">{{ i }}</div>
+              {% endfor %}
+              </div>
+              <div class="calendar_body">
+              {% for i in 6|times %}
+                <div class="calendar_row">
+                {% for j in 7|times %}
+                    <div class="item" id="calendar_cell_{{ i|mul:7|add:j }}">
+                        <div class="item_row">
+                            <div class="item_text"></div>
+                            <div class="item_dots">
+                                <div class="dot has_income hide"></div>
+                                <div class="dot has_expense hide"></div>
+                                <div class="dot has_remark hide"></div>
+                            </div>
+                        </div>
+                        <div class="item_tags">
+                            <div class="tag has_income hide">收入 <span>0</span></div>
+                            <div class="tag has_expense hide">支出 <span>0</span></div>
+                            <div class="tag has_chicken hide">雞隻 +<span>0</span></div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+              {% endfor %}
+              </div>
+          </div>
+          {% elif type == 'd' %}
           <div class="summary">
               <div class="item">
-                  <div class="name">{% if type == 'm' %}本月收支{% else %}本日收支{% endif %}</div>
-                  <div class="num {% if total < 0 %}negative{% endif %}">{{ total|abs|intcomma }}</div>
+                  <div class="name">本日盈餘</div>
+                  <div class="num {% if total < 0 %}negative{% endif %}">{{ total|intcomma }}</div>
               </div>
               <div class="item">
                   <div class="name">收入</div>
@@ -44,73 +97,63 @@
                   <div class="name">支出</div>
                   <div class="num {% if expense > 0 %}negative{% endif %}">{{ expense|intcomma }}</div>
               </div>
+              {% if tab == '0' or tab == '1' %}
               <div class="item">
-                  <div class="name">{% if type == 'm' %}月雞隻數{% else %}日雞隻數{% endif %}</div>
+                  <div class="name">日雞隻數</div>
                   <div class="num">{{ volume|intcomma }}</div>
               </div>
+              {% endif %}
           </div>
           <div class="content">
               <div class="list">
-                  {% if type == 'm' %}
-                      {% for item in daily_items %}
-                      <a href="{% url 'web:report' %}?y={{ item.d|date:'Y' }}&m={{ item.d|date:'m' }}&d={{ item.d|date:'d' }}&t=d" class="item">
-                          <div class="date">{{ item.d|date:'m-d' }}</div>
-                          <div class="volume"><img src="{% static 'images/turkey.png' %}"><span>{{ item.chicken|default:'0'|intcomma }}</span></div>
-                          <div class="money"><img src="{% static 'images/money.png' %}"><span class="{% if item.total < 0 %}negative{% endif %}">{{ item.total|abs|intcomma }}</span></div>
-                      </a>
-                      {% endfor %}
-                  {% elif type == 'd' %}
-                      {% for item in items %}
-                      <div class="item">
-                          <div class="name">
-                              {% if item.classname == 'income' %}
-                                  {% if item.chicken %}馥香雞{% elif item.hot_pot %}日料{% else %}家庭{% endif %}收入
-                              {% elif item.classname == 'expense' %}
-                                  {% if item.item.chicken %}馥香雞{% elif item.item.hot_pot %}日料{% else %}家庭{% endif %}支出
-                              {% endif %}
-                          </div>
-                          <div class="category">
-                              {% if item.classname == 'expense' %}{{ item.item.name }}{% endif %}
-                          </div>
-                          <div class="volume">
-                              {% if item.classname == 'income' and item.chicken %}
-                              <img src="{% static 'images/turkey.png' %}">
-                              <span>{{ item.volume|default:'0'|intcomma }}</span>
-                              {% endif %}
-                          </div>
-                          <div class="money">
-                              <img src="{% static 'images/money.png' %}">
-                              <span class="{% if item.classname == 'expense' %}negative{% endif %}">{{ item.value|intcomma }}</span>
-                          </div>
-                          <div class="button">
-                              {% if item.classname == 'income' and item.chicken %}
-                                  <a href="{% url 'web:chicken' %}?n={{ item.id }}&t=income" class="edit"><i class="fa-solid fa-pen"></i></a>
-                              {% elif item.classname == 'income' and item.hot_pot %}
-                                  <a href="{% url 'web:hotpot' %}?n={{ item.id }}&t=income" class="edit"><i class="fa-solid fa-pen"></i></a>
-                              {% elif item.classname == 'expense' and item.item.chicken %}
-                                  <a href="{% url 'web:chicken' %}?n={{ item.id }}&t=expense" class="edit"><i class="fa-solid fa-pen"></i></a>
-                              {% elif item.classname == 'expense' and item.item.hot_pot %}
-                                  <a href="{% url 'web:hotpot' %}?n={{ item.id }}&t=expense" class="edit"><i class="fa-solid fa-pen"></i></a>
-                              {% elif item.classname == 'expense' and item.item.home %}
-                                  <a href="{% url 'web:expense' %}?n={{ item.id }}" class="edit"><i class="fa-solid fa-pen"></i></a>
-                              {% endif %}
-                              <form method="post" action="{% url 'web:report' %}" class="delete">
-                                  {% csrf_token %}
-                                  <input type="hidden" name="method" value="delete_item">
-                                  <input type="hidden" name="type" value="{{ item.classname }}">
-                                  <input type="hidden" name="id" value="{{ item.id }}">
-                                  <i class="fa-solid fa-trash-can delete_btn"></i>
-                              </form>
-                          </div>
+                  {% for item in items %}
+                  <div class="item">
+                      <div class="name">
+                          {% if item.classname == 'income' %}
+                              {% if item.chicken %}馥香雞{% elif item.hot_pot %}日料{% else %}家庭{% endif %}收入
+                          {% elif item.classname == 'expense' %}
+                              {% if item.item.chicken %}馥香雞{% elif item.item.hot_pot %}日料{% else %}家庭{% endif %}支出
+                          {% endif %}
                       </div>
-                      {% endfor %}
-                  {% endif %}
+                      <div class="category">
+                          {% if item.classname == 'expense' %}{{ item.item.name }}{% endif %}
+                      </div>
+                      <div class="remark">
+                          {{ item.remark }}
+                      </div>
+                      <div class="money">
+                          <span class="{% if item.classname == 'expense' %}negative{% endif %}">{{ item.value|intcomma }}</span>
+                      </div>
+                      <div class="button">
+                          {% if item.classname == 'income' %}
+                          <a href="{% url 'web:tracking_form' %}?n={{ item.id }}&c=i&t={{ tab }}" class="edit"><i class="fa-solid fa-pen"></i></a>
+                          {% else %}
+                          <a href="{% url 'web:tracking_form' %}?n={{ item.id }}&c=e&t={{ tab }}" class="edit"><i class="fa-solid fa-pen"></i></a>
+                          {% endif %}
+                          <form method="post" action="{% url 'web:report' %}" class="delete">
+                              {% csrf_token %}
+                              <input type="hidden" name="method" value="delete_item">
+                              <input type="hidden" name="type" value="{{ item.classname }}">
+                              <input type="hidden" name="id" value="{{ item.id }}">
+                              <i class="fa-solid fa-trash-can delete_btn"></i>
+                          </form>
+                      </div>
+                  </div>
+                  {% endfor %}
               </div>
           </div>
+          {% endif %}
       </div>
   </div>
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript">
+    var tab = {{ tab }};
+    var received_data  = "{{ daily_items|escapejs }}";
+</script>
+<script src="{% static "vendor/jquery-ui-1.13.2/jquery-ui.min.js" %}"></script>
+<script src="{% static "vendor/jquery-ui-month-picker-3.0.4/js/MonthPicker.js" %}"></script>
+<script src="{% static 'js/calendar.js' %}"></script>
 <script src="{% static 'js/form.js' %}"></script>
 {% endblock %}
