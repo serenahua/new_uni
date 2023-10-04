@@ -109,7 +109,7 @@
         defaultDate: "{{ date|date:'Y-m-d' }}",
         onSelect: function() {
           let date = $(this).val();
-          let weekdays = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+          let weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', ]
           let day = new Date(date).getDay();
 
           $('#datepicker_label').text(`${date} ${weekdays[day]}`);
